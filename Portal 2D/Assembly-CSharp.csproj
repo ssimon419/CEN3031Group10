@@ -54,6 +54,7 @@
      <Compile Include="Assets\CanEnterPortal.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
      <Compile Include="Assets\Portal.cs" />
+     <Compile Include="Assets\SimplePortal.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
