@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal 2D", "Assembly-CSharp.csproj", "{4DD7A850-2814-FF16-0AFE-3179501CA927}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal 2D", "Portal 2D.csproj", "{250A3C51-7389-7EA5-23B3-F798EB49340C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal 2D.Plugins", "Portal 2D.Plugins.csproj", "{245D5FC8-5DC2-46E9-2D83-C9E8E10FC486}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +11,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4DD7A850-2814-FF16-0AFE-3179501CA927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4DD7A850-2814-FF16-0AFE-3179501CA927}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4DD7A850-2814-FF16-0AFE-3179501CA927}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4DD7A850-2814-FF16-0AFE-3179501CA927}.Release|Any CPU.Build.0 = Release|Any CPU
+		{250A3C51-7389-7EA5-23B3-F798EB49340C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{250A3C51-7389-7EA5-23B3-F798EB49340C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{250A3C51-7389-7EA5-23B3-F798EB49340C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{250A3C51-7389-7EA5-23B3-F798EB49340C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{245D5FC8-5DC2-46E9-2D83-C9E8E10FC486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245D5FC8-5DC2-46E9-2D83-C9E8E10FC486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245D5FC8-5DC2-46E9-2D83-C9E8E10FC486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245D5FC8-5DC2-46E9-2D83-C9E8E10FC486}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
