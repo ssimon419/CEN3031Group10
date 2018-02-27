@@ -59,6 +59,7 @@
      <Compile Include="Assets\scripts\bullet.cs" />
      <Compile Include="Assets\scripts\objectPooler.cs" />
      <Compile Include="Assets\scripts\playerScript.cs" />
+     <Compile Include="Assets\scripts\portal_gun.cs" />
      <Compile Include="Assets\scripts\spinner.cs" />
      <Compile Include="Assets\SimplePlatformController.cs" />
      <Compile Include="Assets\SimplePortal.cs" />
