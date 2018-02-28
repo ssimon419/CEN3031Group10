@@ -16,7 +16,9 @@ public class spinner : MonoBehaviour {
 	public float size;
 
 	public Transform spawnPoint;
-	public float spinRate; //higher = more displacement between angles
+	public float spinRate=0.1f; //higher = more displacement between angles
+	private float nextSpin=0.0f;
+	public float spinAmt;
 
 	public Transform center;
 
@@ -29,8 +31,12 @@ public class spinner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(!flip) spawnPoint.RotateAround (center.position, Vector3.forward, spinRate);
-		else spawnPoint.RotateAround (center.position, Vector3.forward, spinRate*-1);
+		//if(!flip) spawnPoint.RotateAround (center.position, Vector3.forward, spinRate);
+		//else spawnPoint.RotateAround (center.position, Vector3.forward, spinRate*-1);
+		if (Time.time > nextSpin) {
+			center.Rotate (Vector3.forward, spinAmt);
+			nextSpin = Time.time + spinRate;
+		}
 		if (Time.time > nextFire) {
 			if (randomDelay)
 				delay = Random.Range (1f, 4f);
