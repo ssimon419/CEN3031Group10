@@ -52,7 +52,7 @@ public class aimingSpawner : MonoBehaviour {
 		if (burst && first) {
 			boolet.SetActive (true);
 			boolet.GetComponent<Transform>().position = source.position;
-			boolet.GetComponent<bullet>().Initialize (r2d, bulletSpd, 0f, Color.cyan, 1f, size*2);
+			boolet.GetComponent<bullet>().Initialize (r2d, bulletSpd, 0f, c, 1f, size*2);
 			first = false;
 		} else {
 			boolet.SetActive (true);

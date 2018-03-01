@@ -57,6 +57,7 @@
      <Compile Include="Assets\Portal.cs" />
      <Compile Include="Assets\scripts\aimingSpawner.cs" />
      <Compile Include="Assets\scripts\bullet.cs" />
+     <Compile Include="Assets\scripts\new_portal.cs" />
      <Compile Include="Assets\scripts\objectPooler.cs" />
      <Compile Include="Assets\scripts\playerScript.cs" />
      <Compile Include="Assets\scripts\portal_gun.cs" />

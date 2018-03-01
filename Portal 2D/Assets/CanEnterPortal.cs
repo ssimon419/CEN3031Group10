@@ -10,13 +10,13 @@ public class CanEnterPortal : MonoBehaviour {
      * 
      * Note that when your object goes through a portal, it is duplicated and potentially destroyed.
      *  Make sure your code does not rely on waiting for objects to be created / destroyed
-     *      if that object can enter a portal
+     *  if that object can enter a portal
      * 
      * 
      * 
      * This script handles the duplication, etc
      * It also contains a reference to the duplicate, if it exists
-     * 
+     
      */
 
 

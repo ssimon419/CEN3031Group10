@@ -18,9 +18,6 @@ public class SimplePortal : MonoBehaviour
      * 
      */
 
-
-    public SimplePortal otherPortal; // The portal that this one links to. Note that otherPortal.otherPortal == this
-
     //private Collider2D collider;    //The portal's collider. Note that this collider might need to be offset so that you don't start going through the portal until you touch the wall its on
 
 
@@ -28,7 +25,9 @@ public class SimplePortal : MonoBehaviour
 
     private Rigidbody2D body;
     private Transform trans;
+	private Vector3 normal;
 
+	public SimplePortal otherPortal; // The portal that this one links to. Note that otherPortal.otherPortal == this
 
     void Start()
     {
