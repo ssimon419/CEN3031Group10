@@ -26,8 +26,11 @@ public class spinner : MonoBehaviour {
 	public float fireRate = 0.02f;
 	private float nextFire = 0.0f;
 
+	private Animator anim;
+
 	// Use this for initialization
 	void Start () {
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -39,6 +42,10 @@ public class spinner : MonoBehaviour {
 			nextSpin = Time.time + spinRate;
 		}
 		if (Time.time > nextFire) {
+			if (delay == 0) {
+				anim.SetBool ("fire", true);
+				Invoke ("end_fire", 0.05f);
+			}
 			if (randomDelay)
 				delay = Random.Range (1f, 4f);
 			Ray2D r2d = new Ray2D (spawnPoint.position, spawnPoint.position - center.position);
@@ -49,5 +56,9 @@ public class spinner : MonoBehaviour {
 
 			nextFire = Time.time + fireRate;
 		}
+	}
+
+	void end_fire(){
+		anim.SetBool ("fire", false);
 	}
 }

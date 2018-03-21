@@ -17,6 +17,7 @@ public class aimingSpawner : MonoBehaviour {
 	public float fireRate;
 	public float size;
 	public float rotSpeed;
+	public bool gatling;
 
 	private Animator anim;
 	private GameObject target;
@@ -31,9 +32,9 @@ public class aimingSpawner : MonoBehaviour {
 	}
 
 	void Update(){
-		Quaternion targRot = Quaternion.LookRotation (new Vector3(0.0f,0.0f,1f),target.transform.position - center.position);
+		Quaternion targRot = Quaternion.LookRotation (new Vector3(0.0f,0.0f,1f),target.transform.position - gameObject.transform.position);
 		float str = Mathf.Min (rotSpeed * Time.deltaTime, 1);
-		center.rotation=Quaternion.Lerp(center.rotation,targRot,str);
+		gameObject.transform.rotation=Quaternion.Lerp(gameObject.transform.rotation,targRot,str);
 	}
 
 	void ShootBullet () {
@@ -41,17 +42,23 @@ public class aimingSpawner : MonoBehaviour {
 			SpawnBullet ();
 		} else {
 			float timer = burstDelay * burstAmount;
+			if (gatling) {
+				anim.SetBool ("fire", true);
+			}
 			if(enlargeFirst) first = true;
 			for (int i = 0; i < burstAmount; i++) {
 				Invoke ("SpawnBullet", timer);
 				timer -= burstDelay;
 			}
+			anim.SetBool ("fire", false);
 		}
 	}
 
 	void SpawnBullet(){
-		anim.SetBool("fire", true);
-		Invoke ("end_fire", 0.05f);
+		if (!gatling) {
+			anim.SetBool ("fire", true);
+			Invoke ("end_fire", 0.05f);
+		}
 		GameObject boolet = pool_manager.heldPools [0].GetPooledObject ();
 		Ray2D r2d = new Ray2D (center.position, source.position - center.position);
 		if (burst && first) {
