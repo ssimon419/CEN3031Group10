@@ -32,11 +32,11 @@ public class portal_gun : MonoBehaviour {
 		{
 			if (Input.GetButtonDown("Fire1"))
 			{
-				Shoot();
+				Shoot(true);
 			}
 			else if (Input.GetButtonDown("Fire2"))
 			{
-				Shoot2();
+				Shoot(false);
 			}
 		}
 		else
@@ -44,17 +44,17 @@ public class portal_gun : MonoBehaviour {
 			if (Input.GetButton("Fire1") && Time.time > timeToFire)
 			{
 				timeToFire = Time.time + 1 / fireRate;
-				Shoot();
+				Shoot(true);
 			}
 			else if (Input.GetButton("Fire2") && Time.time > timeToFire)
 			{
 				timeToFire = Time.time + 1 / fireRate;
-				Shoot2();
+				Shoot(false);
 			}
 		}
 	}
 
-	void Shoot ()
+	void Shoot (bool a)
 	{
 		Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 		Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
@@ -69,11 +69,18 @@ public class portal_gun : MonoBehaviour {
 		{
 			Debug.DrawLine(firePointPosition, hit.point, Color.red);
 			Debug.Log("We hit" + hit.collider.name);
-			portal1.position = hit.point;
+			Debug.DrawRay (hit.point, hit.normal*3);
+			if (a) {
+				portal1.position = hit.point;
+				portal1.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);	
+			} else {
+				portal2.position = hit.point;
+				portal2.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);	
+			}
 		}
 	}
 
-	void Shoot2()
+	/*void Shoot2()
 	{
 		Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 		Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
@@ -88,7 +95,8 @@ public class portal_gun : MonoBehaviour {
 		{
 			Debug.DrawLine(firePointPosition, hit.point, Color.red);
 			Debug.Log("We hit" + hit.collider.name);
+			Debug.DrawRay (hit.point, hit.normal*3);
 			portal2.position = hit.point;
 		}
-	}
+	}*/
 }

@@ -8,6 +8,7 @@ public class spinner : MonoBehaviour {
 
 	private float z;
 
+	public int damage;
 	public float speed;
 	public bool flip;
 	public float delay;
@@ -22,7 +23,7 @@ public class spinner : MonoBehaviour {
 
 	public Transform center;
 
-	public float fireRate = 0.2f;
+	public float fireRate = 0.02f;
 	private float nextFire = 0.0f;
 
 	// Use this for initialization
@@ -44,7 +45,7 @@ public class spinner : MonoBehaviour {
 			GameObject boolet = pool_manager.heldPools [0].GetPooledObject ();
 			boolet.SetActive (true);
 			boolet.GetComponent<Transform>().position = spawnPoint.position;
-			boolet.GetComponent<bullet>().Initialize (r2d, speed, delay, currentC,1f,size); //direction,speed,delay,color,flip?
+			boolet.GetComponent<bullet>().Initialize (r2d, speed, delay, currentC,1f,size,damage); //direction,speed,delay,color,flip?
 
 			nextFire = Time.time + fireRate;
 		}

@@ -1,17 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\new_portal.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\spinner.cs">
     <Files>
       <File FileName="Assets\Standard Assets\2D\Scripts\PlatformerCharacter2D.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\bullet.cs" Line="43" Column="50" />
-      <File FileName="Assets\pool_manager.cs" Line="9" Column="45" />
-      <File FileName="Assets\scripts\aimingSpawner.cs" Line="50" Column="56" />
-      <File FileName="Assets\scripts\spinner.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\bullet.cs" Line="1" Column="1" />
+      <File FileName="Assets\pool_manager.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\aimingSpawner.cs" Line="14" Column="2" />
+      <File FileName="Assets\scripts\spinner.cs" Line="26" Column="31" />
       <File FileName="Assets\scripts\playerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\CanEnterPortal.cs" Line="19" Column="6" />
-      <File FileName="Assets\scripts\portal_gun.cs" Line="22" Column="25" />
-      <File FileName="Assets\scripts\new_portal.cs" Line="41" Column="4" />
-      <File FileName="Assets\SimplePortal.cs" Line="24" Column="25" />
+      <File FileName="Assets\CanEnterPortal.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\portal_gun.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\new_portal.cs" Line="1" Column="1" />
+      <File FileName="Assets\SimplePortal.cs" Line="1" Column="1" />
+      <File FileName="Assets\explosion_behavior.cs" Line="1" Column="1" />
+      <File FileName="Assets\destructible_object.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

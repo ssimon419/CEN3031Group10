@@ -19,15 +19,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300002, guid: 095ead4fe67f3224893bb87d6599ba5d, type: 3}
+      value: {fileID: 21300002, guid: ca7974050a176be4588e36a2cd8300a7, type: 3}
     - time: 0.2
-      value: {fileID: 21300004, guid: 095ead4fe67f3224893bb87d6599ba5d, type: 3}
+      value: {fileID: 21300004, guid: ca7974050a176be4588e36a2cd8300a7, type: 3}
     - time: 0.4
-      value: {fileID: 21300006, guid: 095ead4fe67f3224893bb87d6599ba5d, type: 3}
+      value: {fileID: 21300006, guid: ca7974050a176be4588e36a2cd8300a7, type: 3}
     - time: 0.6
-      value: {fileID: 21300008, guid: 095ead4fe67f3224893bb87d6599ba5d, type: 3}
+      value: {fileID: 21300008, guid: ca7974050a176be4588e36a2cd8300a7, type: 3}
     - time: 0.8
-      value: {fileID: 21300000, guid: 095ead4fe67f3224893bb87d6599ba5d, type: 3}
+      value: {fileID: 21300000, guid: ca7974050a176be4588e36a2cd8300a7, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -47,11 +47,11 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300002, guid: 095ead4fe67f3224893bb87d6599ba5d, type: 3}
-    - {fileID: 21300004, guid: 095ead4fe67f3224893bb87d6599ba5d, type: 3}
-    - {fileID: 21300006, guid: 095ead4fe67f3224893bb87d6599ba5d, type: 3}
-    - {fileID: 21300008, guid: 095ead4fe67f3224893bb87d6599ba5d, type: 3}
-    - {fileID: 21300000, guid: 095ead4fe67f3224893bb87d6599ba5d, type: 3}
+    - {fileID: 21300002, guid: ca7974050a176be4588e36a2cd8300a7, type: 3}
+    - {fileID: 21300004, guid: ca7974050a176be4588e36a2cd8300a7, type: 3}
+    - {fileID: 21300006, guid: ca7974050a176be4588e36a2cd8300a7, type: 3}
+    - {fileID: 21300008, guid: ca7974050a176be4588e36a2cd8300a7, type: 3}
+    - {fileID: 21300000, guid: ca7974050a176be4588e36a2cd8300a7, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -77,4 +77,11 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.8
+    functionName: end_fire
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

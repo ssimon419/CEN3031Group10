@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal 2D", "Assembly-CShar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal 2D", "Assembly-CSharp-firstpass.csproj", "{B5403239-09DE-BDC5-390B-E577F29D3180}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal 2D", "Assembly-CSharp-Editor.csproj", "{E25582D9-C480-0F3C-39EE-F3BB8257ABB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{B5403239-09DE-BDC5-390B-E577F29D3180}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5403239-09DE-BDC5-390B-E577F29D3180}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5403239-09DE-BDC5-390B-E577F29D3180}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E25582D9-C480-0F3C-39EE-F3BB8257ABB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E25582D9-C480-0F3C-39EE-F3BB8257ABB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E25582D9-C480-0F3C-39EE-F3BB8257ABB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E25582D9-C480-0F3C-39EE-F3BB8257ABB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
