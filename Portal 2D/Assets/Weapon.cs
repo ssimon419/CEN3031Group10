@@ -72,6 +72,8 @@ public class Weapon : MonoBehaviour
             Debug.DrawLine(firePointPosition, hit.point, Color.red);
             Debug.Log("We hit" + hit.collider.name);
             portal1.position = hit.point;
+            portal1.rotation = Quaternion.LookRotation(new Vector3(0.0f, 0.0f, 1f), hit.normal);
+
         }
     }
 
@@ -91,7 +93,7 @@ public class Weapon : MonoBehaviour
             Debug.DrawLine(firePointPosition, hit.point, Color.red);
             Debug.Log("We hit" + hit.collider.name);
             portal2.position = hit.point;
-            portal2.rotation = Quaternion.FromToRotation(portal2.up, hit.normal);
+            portal2.rotation = Quaternion.LookRotation(new Vector3 (0.0f, 0.0f, 1f), hit.normal);
         }
     }
 }
