@@ -91,6 +91,7 @@ public class Weapon : MonoBehaviour
             Debug.DrawLine(firePointPosition, hit.point, Color.red);
             Debug.Log("We hit" + hit.collider.name);
             portal2.position = hit.point;
+            portal2.rotation = Quaternion.FromToRotation(portal2.up, hit.normal);
         }
     }
 }
