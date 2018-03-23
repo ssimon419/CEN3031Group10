@@ -175,8 +175,8 @@
      <Compile Include="Assets\scripts\playerScript.cs" />
      <Compile Include="Assets\scripts\portal_gun.cs" />
      <Compile Include="Assets\scripts\spinner.cs" />
-     <Compile Include="Assets\SimplePlatformController.cs" />
      <Compile Include="Assets\SimplePortal.cs" />
+     <Compile Include="Assets\switchObject.cs" />
      <None Include="Assets\enemies\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
      <None Include="Assets\enemies\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
      <None Include="Assets\enemies\AstarPathfindingProject\Plugins\dependencies.txt" />

@@ -19,6 +19,9 @@ public class bullet : MonoBehaviour {
 	public bool sticky = false;
 	private Rigidbody2D rb2d;
 
+	private GameObject portal;
+	private Transform portal_orientation;
+
 	// Use this for initialization lol
 	public void Initialize(Ray2D r, float s, float fd,Color c,float f,float scl,int d){ //moveInDirection
 		damage = d;
@@ -45,13 +48,13 @@ public class bullet : MonoBehaviour {
 			other.gameObject.SendMessage ("playerDamage");
 			gameObject.SetActive (false);
 		}
-		else if (other.gameObject.CompareTag ("ground")) {
+		/*else if (other.gameObject.CompareTag ("ground")) {
 			gameObject.SetActive (false);
 		}
 		else if (other.gameObject.CompareTag ("environment")) {
 			other.gameObject.SendMessage ("objectDamage",damage);
 			gameObject.SetActive (false);
-		}
+		}*/
 	}
 
 	void OnTriggerExit2D(Collider2D other){

@@ -75,7 +75,7 @@ public class portal_gun : MonoBehaviour {
 				portal1.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);	
 			} else {
 				portal2.position = hit.point;
-				portal2.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);	
+				portal2.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);
 			}
 		}
 	}

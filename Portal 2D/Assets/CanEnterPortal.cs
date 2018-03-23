@@ -10,34 +10,48 @@ public class CanEnterPortal : MonoBehaviour {
      * 
      * Note that when your object goes through a portal, it is duplicated and potentially destroyed.
      *  Make sure your code does not rely on waiting for objects to be created / destroyed
-     *  if that object can enter a portal
+     *      if that object can enter a portal
      * 
      * 
      * 
      * This script handles the duplication, etc
      * It also contains a reference to the duplicate, if it exists
-     
+     * 
      */
 
 
 
     private CanEnterPortal other; //the duplicate. Note that other.other == this
 
-    private bool goingThroughPortal = false;
+    int delay = 0;
 
+    SimplePortal goingThrough = null;
 
-    bool allowEnter()
+    void FixedUpdate()
     {
-        return !goingThroughPortal;
+        if (delay > 0)
+        {
+            if (--delay == 0)
+                goingThrough = null;
+        }
     }
 
-    public void enter() {
-        goingThroughPortal = true;
+   
+    public bool allowEnter()
+    {
+        return goingThrough == null;
     }
 
-    public void exit()
+    public void enter(SimplePortal portal) {
+        delay = 10;
+        if(goingThrough == null)
+            goingThrough = portal;
+    }
+
+    public void exit(SimplePortal portal)
     {
-        goingThroughPortal = false;
+        if (goingThrough == portal.otherPortal)
+            goingThrough = null;
     }
 
     public void destroyOther()
@@ -133,8 +147,4 @@ public class CanEnterPortal : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

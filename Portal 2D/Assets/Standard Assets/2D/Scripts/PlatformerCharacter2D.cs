@@ -74,7 +74,24 @@ namespace UnityStandardAssets._2D
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
                 // Move the character
-                m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+
+
+                float vx = m_Rigidbody2D.velocity.x;
+
+                float responsiveness = 0.5f;
+
+                if (Math.Abs(vx - move * m_MaxSpeed) < responsiveness)
+                    vx = move * m_MaxSpeed;
+                else
+                {
+                    if (vx < move * m_MaxSpeed)
+                        vx += responsiveness;
+                    else
+                        vx -= responsiveness;
+                }
+                
+
+                m_Rigidbody2D.velocity = new Vector2(vx, m_Rigidbody2D.velocity.y);
 
                 // If the input is moving the player right and the player is facing left...
                 if (move > 0 && !m_FacingRight)
