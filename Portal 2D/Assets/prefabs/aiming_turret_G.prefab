@@ -20,13 +20,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4962663128769034}
   - component: {fileID: 212709790275982118}
+  - component: {fileID: 114834584627522776}
   m_Layer: 0
   m_Name: aiming_turret_G
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1248788833210210
 GameObject:
   m_ObjectHideFlags: 1
@@ -53,9 +54,10 @@ GameObject:
   - component: {fileID: 114872527884989898}
   - component: {fileID: 212336976578299818}
   - component: {fileID: 95694746665259290}
+  - component: {fileID: 60807350615395562}
   m_Layer: 0
   m_Name: aiming_spawner
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +109,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791752753829688}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -115,21 +117,56 @@ Transform:
   - {fileID: 4060966494543428}
   m_Father: {fileID: 4962663128769034}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!4 &4962663128769034
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1007179415356094}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.37, y: -3.07, z: -0.007538081}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 3.76, y: 4.07, z: -0.007538081}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 4582938304046626}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!60 &60807350615395562
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1791752753829688}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 0.96}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.08048797, y: 0.30272806}
+      - {x: 0.0066080093, y: 0.32230672}
+      - {x: -0.06274927, y: 0.30554405}
+      - {x: -0.06864798, y: 0.14753866}
+      - {x: -0.15006673, y: 0.07002127}
+      - {x: -0.15141869, y: -0.072240114}
+      - {x: -0.07572007, y: -0.14767206}
+      - {x: 0.074789405, y: -0.15084273}
+      - {x: 0.15957868, y: -0.030200005}
+      - {x: 0.15365863, y: 0.069378614}
+      - {x: 0.09259462, y: 0.12767202}
 --- !u!95 &95694746665259290
 Animator:
   serializedVersion: 3
@@ -147,6 +184,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114834584627522776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007179415356094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a1d4bf8f429dd49972a54014c1ec90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
 --- !u!114 &114872527884989898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,9 +218,10 @@ MonoBehaviour:
   initDelay: 1
   bulletSpd: 15
   fireRate: 3
-  size: 1.7
+  size: 2
   rotSpeed: 20
   gatling: 1
+  turret_base: {fileID: 4962663128769034}
 --- !u!212 &212336976578299818
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -205,7 +255,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -19
   m_Sprite: {fileID: 21300000, guid: e24f0b85dd67eb345b67ade3a6ed8557, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -249,7 +299,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -20
   m_Sprite: {fileID: 21300000, guid: 31ddb880de32e774486970c7ba077dd0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

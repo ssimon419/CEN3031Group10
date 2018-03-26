@@ -44,26 +44,19 @@ public class bullet : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject.CompareTag ("hitbox")) {
+		if (other.gameObject.CompareTag ("player_hit")) {
 			other.gameObject.SendMessage ("playerDamage");
 			gameObject.SetActive (false);
+		} else if (other.gameObject.CompareTag ("enemy")) {
+			other.gameObject.SendMessage ("enemyDamage", damage);
+			gameObject.SetActive (false);
 		}
-		/*else if (other.gameObject.CompareTag ("ground")) {
+		else if (other.gameObject.CompareTag ("ground")) {
 			gameObject.SetActive (false);
 		}
 		else if (other.gameObject.CompareTag ("environment")) {
 			other.gameObject.SendMessage ("objectDamage",damage);
 			gameObject.SetActive (false);
-		}*/
-	}
-
-	void OnTriggerExit2D(Collider2D other){
-		if (other.gameObject.CompareTag ("MainCamera") && !persist) {
-			gameObject.SetActive (false);
 		}
-	}
-
-	void OnBecameInvisible() {
-		gameObject.SetActive (false);
 	}
 }

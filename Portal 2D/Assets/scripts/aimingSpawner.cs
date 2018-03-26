@@ -19,6 +19,10 @@ public class aimingSpawner : MonoBehaviour {
 	public float rotSpeed;
 	public bool gatling;
 
+	private bool activating=false;
+	private bool aiming=false;
+	private float curExtend=0f;
+	public Transform turret_base;
 	private Animator anim;
 	private GameObject target;
 	private bool first=false;
@@ -27,14 +31,31 @@ public class aimingSpawner : MonoBehaviour {
 
 	void Awake(){
 		anim = GetComponent<Animator> ();
-		target = GameObject.FindGameObjectWithTag ("hitbox");
-		InvokeRepeating ("ShootBullet", initDelay, fireRate);
+	}
+
+	void OnEnable () {
+		aiming = false;
+		activating = true;
+		curExtend = 0f;
 	}
 
 	void Update(){
-		Quaternion targRot = Quaternion.LookRotation (new Vector3(0.0f,0.0f,1f),target.transform.position - gameObject.transform.position);
-		float str = Mathf.Min (rotSpeed * Time.deltaTime, 1);
-		gameObject.transform.rotation=Quaternion.Lerp(gameObject.transform.rotation,targRot,str);
+		if (activating) {
+			if (curExtend < 3.8f) {
+				turret_base.Translate (0f, 0.05f, 0f);
+				curExtend += 0.05f;
+			} else {
+				activating = false;	
+				aiming = true;
+				target = GameObject.FindGameObjectWithTag ("player_hit");
+				InvokeRepeating ("ShootBullet", initDelay, fireRate);
+			}
+		} 
+		if(aiming) {
+			Quaternion targRot = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), target.transform.position - gameObject.transform.position);
+			float str = Mathf.Min (rotSpeed * Time.deltaTime, 1);
+			gameObject.transform.rotation = Quaternion.Lerp (gameObject.transform.rotation, targRot, str);
+		}
 	}
 
 	void ShootBullet () {

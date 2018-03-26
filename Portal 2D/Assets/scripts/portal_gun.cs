@@ -25,9 +25,18 @@ public class portal_gun : MonoBehaviour {
 		}
 	}
 
+	float Angle2(Vector2 a, Vector2 b){
+		return Mathf.Atan2 (a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+	}
+
 	// Update is called once per frame
 	void Update () {
-		//  Shoot();
+		//  Shoot();		
+		Vector2 posOnScreen=transform.position;
+		Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		float angle = Angle2(posOnScreen, mouseOnScreen);
+		transform.rotation = Quaternion.Euler (new Vector3 (0f, 0f, angle));
+
 		if (fireRate == 0)
 		{
 			if (Input.GetButtonDown("Fire1"))
@@ -71,6 +80,7 @@ public class portal_gun : MonoBehaviour {
 			Debug.Log("We hit" + hit.collider.name);
 			Debug.DrawRay (hit.point, hit.normal*3);
 			if (a) {
+				//square raycast from hit point?
 				portal1.position = hit.point;
 				portal1.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);	
 			} else {

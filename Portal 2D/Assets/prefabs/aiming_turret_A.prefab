@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4806758413423538}
   - component: {fileID: 212617551819309164}
+  - component: {fileID: 114335198311617468}
   m_Layer: 0
   m_Name: aiming_turret_A
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,9 +54,10 @@ GameObject:
   - component: {fileID: 114425997449142224}
   - component: {fileID: 212308240702779576}
   - component: {fileID: 95217626461791486}
+  - component: {fileID: 60273660979896274}
   m_Layer: 0
   m_Name: aiming_spawner
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,14 +95,49 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1617073547275134}
-  m_LocalRotation: {x: 0, y: 0, z: 0.859674, w: 0.5108431}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4305123536527640}
   m_Father: {fileID: 4806758413423538}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 118.56}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &60273660979896274
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1617073547275134}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 0.96}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.13224149, y: 0.09069008}
+      - {x: 0.027700543, y: 0.16399407}
+      - {x: 0.09017241, y: 0.25155252}
+      - {x: -0.08620691, y: 0.24758703}
+      - {x: -0.02086246, y: 0.16620809}
+      - {x: -0.14034498, y: 0.10896593}
+      - {x: -0.16613078, y: 0.00534451}
+      - {x: -0.11827612, y: -0.11818588}
+      - {x: 0.0072419643, y: -0.16017252}
+      - {x: 0.116551995, y: -0.10775846}
+      - {x: 0.14827585, y: 0.005173087}
 --- !u!95 &95217626461791486
 Animator:
   serializedVersion: 3
@@ -118,6 +155,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114335198311617468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1322445213365740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a1d4bf8f429dd49972a54014c1ec90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
 --- !u!114 &114425997449142224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +192,7 @@ MonoBehaviour:
   size: 2
   rotSpeed: 20
   gatling: 0
+  turret_base: {fileID: 4806758413423538}
 --- !u!212 &212308240702779576
 SpriteRenderer:
   m_ObjectHideFlags: 1

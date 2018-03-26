@@ -10,9 +10,8 @@ public class switchObject : MonoBehaviour {
 	private bool in_area=false;
 	// Use this for initialization
 	void Update(){
-		if (Input.GetKeyDown("e"))
+		if (Input.GetKeyDown("e") && in_area)
 		{
-			Debug.Log ("hell borther");
 			if (!active) {
 				for (int i = 0; i < objs.Length; ++i) {
 					objs [i].SetActive (true);
@@ -29,14 +28,12 @@ public class switchObject : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.CompareTag ("Player")) {
-			Debug.Log ("hello friends i am here\t");
 			in_area = true;
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other){
 		if (other.gameObject.CompareTag ("Player")) {
-			Debug.Log ("goodbye");
 			in_area = false;
 		}
 	}

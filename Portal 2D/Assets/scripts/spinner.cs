@@ -14,6 +14,9 @@ public class spinner : MonoBehaviour {
 	public float delay;
 	public Color currentC;
 	public bool randomDelay;
+	public bool randomFire;
+	public float randFireLow;
+	public float randFireHigh;
 	public float size;
 
 	public Transform spawnPoint;
@@ -80,7 +83,7 @@ public class spinner : MonoBehaviour {
 			boolet.SetActive (true);
 			boolet.GetComponent<Transform>().position = spawnPoint.position;
 			boolet.GetComponent<bullet>().Initialize (r2d, speed, delay, currentC,1f,size,damage); //direction,speed,delay,color,flip?
-
+			if(randomFire) fireRate=Random.Range(randFireLow,randFireHigh);
 			nextFire = Time.time + fireRate;
 		}
 	}
