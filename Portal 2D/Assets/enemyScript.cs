@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class enemyScript : MonoBehaviour {
 	public int health;
+	public GameObject explosion;
+
+	private SpriteRenderer spr;
+
+	void Awake(){
+		spr = GetComponent<SpriteRenderer> ();
+	}
 
 	void enemyDamage(int dmg){
 		if (health > 0) {
 			health-=dmg;
 		} 
 		if (health <= 0) {
-			gameObject.SetActive (false);
+			spr.enabled = false;
+			if (explosion != null)
+				explosion.SetActive (true);
+			else
+				Destroy (gameObject);
 		}
 	}
 }
