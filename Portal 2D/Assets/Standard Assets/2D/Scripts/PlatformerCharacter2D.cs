@@ -123,6 +123,7 @@ namespace UnityStandardAssets._2D
                     vx = move * m_MaxSpeed;
                 else
                 {
+
                     if (vx < move * m_MaxSpeed)
                         vx += responsiveness;
                     else
