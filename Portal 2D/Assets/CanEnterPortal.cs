@@ -23,37 +23,35 @@ public class CanEnterPortal : MonoBehaviour {
 
     private CanEnterPortal other; //the duplicate. Note that other.other == this
 
+    
+    public int amountToDelay = 10; //How many frames to wait before allowing the object to enter a new portal
+
     int delay = 0;
 
-    SimplePortal goingThrough = null;
-
+   
+    int n = 0;
     void FixedUpdate()
     {
+        
         if (delay > 0)
         {
-            if (--delay == 0)
-                goingThrough = null;
+            delay--;
         }
+        
     }
 
    
     public bool allowEnter()
     {
-        return goingThrough == null;
+        return delay == 0;
     }
 
-    public void enter(SimplePortal portal) {
-        delay = 10;
-        if(goingThrough == null)
-            goingThrough = portal;
+    public void enter() {
+        n++;
+        delay = amountToDelay;
     }
 
-    public void exit(SimplePortal portal)
-    {
-        if (goingThrough == portal.otherPortal)
-            goingThrough = null;
-    }
-
+   
     public void destroyOther()
     {
         if(other != null)
@@ -66,6 +64,9 @@ public class CanEnterPortal : MonoBehaviour {
     }
 
     public void updateOther(Portal enter, Portal exit) { 
+
+        //This is leftover code from the more advanced portals
+        //Keeping in case it comes in use later
 
 
         if (other == null)

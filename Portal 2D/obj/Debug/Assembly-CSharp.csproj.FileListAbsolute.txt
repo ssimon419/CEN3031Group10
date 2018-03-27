@@ -136,3 +136,5 @@ C:\Users\Jave1\Desktop\School\Software Engineering\Project\CEN3031Group10\Portal
 C:\Users\Jave1\Desktop\School\Software Engineering\Project\CEN3031Group10\Portal 2D\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
 C:\Users\Jave1\Desktop\School\Software Engineering\Project\CEN3031Group10\Portal 2D\obj\Debug\Assembly-CSharp.dll
 C:\Users\Jave1\Desktop\School\Software Engineering\Project\CEN3031Group10\Portal 2D\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Jave1\Desktop\School\Software Engineering\Project\Clone 1\CEN3031Group10\Portal 2D\obj\Debug\Assembly-CSharp.dll
+C:\Users\Jave1\Desktop\School\Software Engineering\Project\Clone 1\CEN3031Group10\Portal 2D\obj\Debug\Assembly-CSharp.pdb

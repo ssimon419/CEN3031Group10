@@ -44,9 +44,43 @@ public class bullet : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject.CompareTag ("player_hit")) {
-			other.gameObject.SendMessage ("playerDamage");
-			gameObject.SetActive (false);
+
+
+        BulletReflector reflector = other.GetComponent<BulletReflector>();
+        if(reflector != null)
+        {
+            if (reflector.isOn())
+            {
+                Rigidbody2D body = this.GetComponent<Rigidbody2D>();
+                body.velocity = new Vector3(-body.velocity.x, -body.velocity.y, 0);
+
+            }
+        }
+
+
+        if (other.gameObject.CompareTag ("player_hit")) {
+
+            Transform t = other.gameObject.transform.parent.Find("char_arm").Find("FirePoint");
+            
+
+         //   BulletReflector reflector = t.GetComponent<BulletReflector>();
+            
+            
+         //   if (reflector.isOn())
+            {
+               
+                //Reflect
+
+
+            }
+           // else
+            {
+
+                other.gameObject.SendMessage("playerDamage");
+                
+                gameObject.SetActive(false);
+                
+            }
 		} else if (other.gameObject.CompareTag ("enemy")) {
 			other.gameObject.SendMessage ("enemyDamage", damage);
 			gameObject.SetActive (false);
