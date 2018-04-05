@@ -6,6 +6,7 @@ public class aimingSpawner : MonoBehaviour {
 
 	public Transform source;
 	public Transform center;
+	public GameObject target;
 	public int damage;
 	public bool burst;
 	public float burstAmount;
@@ -24,19 +25,28 @@ public class aimingSpawner : MonoBehaviour {
 	private float curExtend=0f;
 	public Transform turret_base;
 	private Animator anim;
-	private GameObject target;
 	private bool first=false;
 	
 	// Update is called once per frame
 
 	void Awake(){
 		anim = GetComponent<Animator> ();
+
 	}
 
 	void OnEnable () {
 		aiming = false;
 		activating = true;
 		curExtend = 0f;
+	}
+
+	void OnDisable(){
+		aiming = false;
+		for (float i = 0; i < 3.8f; i += 0.05f) {
+			turret_base.Translate (0f, -0.05f, 0f);
+			curExtend += 0.05f;
+		}
+		CancelInvoke ();
 	}
 
 	void Update(){
@@ -47,7 +57,6 @@ public class aimingSpawner : MonoBehaviour {
 			} else {
 				activating = false;	
 				aiming = true;
-				target = GameObject.FindGameObjectWithTag ("player_hit");
 				InvokeRepeating ("ShootBullet", initDelay, fireRate);
 			}
 		} 
@@ -96,9 +105,5 @@ public class aimingSpawner : MonoBehaviour {
 
 	void end_fire(){
 		anim.SetBool("fire", false);
-	}
-
-	void OnDisable(){
-		CancelInvoke ();
 	}
 }

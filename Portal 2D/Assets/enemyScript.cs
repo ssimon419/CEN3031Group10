@@ -18,6 +18,7 @@ public class enemyScript : MonoBehaviour {
 		} 
 		if (health <= 0) {
 			spr.enabled = false;
+			gameObject.GetComponentInChildren<SpriteRenderer> ().enabled = false;
 			if (explosion != null)
 				explosion.SetActive (true);
 			else

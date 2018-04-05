@@ -19,6 +19,7 @@ public class bullet : MonoBehaviour {
 	public bool sticky = false;
 	private Rigidbody2D rb2d;
 
+	private bool portaling=false;
 	private GameObject portal;
 	private Transform portal_orientation;
 
@@ -47,16 +48,25 @@ public class bullet : MonoBehaviour {
 		if (other.gameObject.CompareTag ("player_hit")) {
 			other.gameObject.SendMessage ("playerDamage");
 			gameObject.SetActive (false);
+		} else if (other.gameObject.CompareTag("Portal")){
+			portaling = true;
 		} else if (other.gameObject.CompareTag ("enemy")) {
 			other.gameObject.SendMessage ("enemyDamage", damage);
 			gameObject.SetActive (false);
 		}
-		else if (other.gameObject.CompareTag ("ground")) {
+		else if (other.gameObject.CompareTag ("ground")&&!portaling) {
 			gameObject.SetActive (false);
 		}
 		else if (other.gameObject.CompareTag ("environment")) {
 			other.gameObject.SendMessage ("objectDamage",damage);
 			gameObject.SetActive (false);
+		}
+	}
+		
+
+	void OnTriggerExit2D(Collider2D other){
+		if (other.gameObject.CompareTag ("Portal")) {
+			portaling = false;
 		}
 	}
 }

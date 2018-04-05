@@ -5,9 +5,16 @@ using UnityEngine;
 public class switchObject : MonoBehaviour {
 
 	public GameObject[] objs;
+	public Sprite[] sprites;
 
+	private SpriteRenderer spr;
 	private bool active=false;
 	private bool in_area=false;
+
+	void Awake(){
+		spr = GetComponent<SpriteRenderer> ();
+	}
+
 	// Use this for initialization
 	void Update(){
 		if (Input.GetKeyDown("e") && in_area)
@@ -16,11 +23,13 @@ public class switchObject : MonoBehaviour {
 				for (int i = 0; i < objs.Length; ++i) {
 					objs [i].SetActive (true);
 				}
+				spr.sprite = sprites [1];
 				active = true;
 			} else {
 				for (int i = 0; i < objs.Length; ++i) {
 					objs [i].SetActive (false);
 				}
+				spr.sprite = sprites [0];
 				active = false;
 			}
 		}

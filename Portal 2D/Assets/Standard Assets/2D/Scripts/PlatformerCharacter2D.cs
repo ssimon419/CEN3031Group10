@@ -232,7 +232,7 @@ namespace UnityStandardAssets._2D
 					Vector3 v = m_Rigidbody2D.velocity;
 					v.y = 0;
 					m_Rigidbody2D.velocity = v;
-					m_Rigidbody2D.AddForce(new Vector2(-1750, m_JumpForce * 1.8f));
+					m_Rigidbody2D.AddForce(new Vector2(-300, m_JumpForce));
 				}
 
 
@@ -246,7 +246,7 @@ namespace UnityStandardAssets._2D
 					Vector3 v = m_Rigidbody2D.velocity;
 					v.y = 0;
 					m_Rigidbody2D.velocity = v;
-					m_Rigidbody2D.AddForce(new Vector2(1750, m_JumpForce * 1.8f));
+					m_Rigidbody2D.AddForce(new Vector2(300, m_JumpForce));
 				}
 
 			}

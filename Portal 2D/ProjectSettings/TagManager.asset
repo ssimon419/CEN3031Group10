@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - hitbox
   - Portal
   - ground
   - environment
@@ -22,7 +21,7 @@ TagManager:
   - player
   - bullets
   - ground
-  - 
+  - broat
   - 
   - 
   - 

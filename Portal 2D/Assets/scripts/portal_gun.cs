@@ -74,17 +74,20 @@ public class portal_gun : MonoBehaviour {
 		}
 		Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition)*100);
 
+
 		if (hit.collider != null)
 		{
 			Debug.DrawLine(firePointPosition, hit.point, Color.red);
 			Debug.Log("We hit" + hit.collider.name);
 			Debug.DrawRay (hit.point, hit.normal*3);
-			if (a) {
+			if (a) { 
 				//square raycast from hit point?
-				portal1.position = hit.point;
+				portal1.SetParent(hit.transform); //assigns portals to the objects they hit so that they move relative to these objects
+				portal1.localPosition = hit.transform.InverseTransformPoint(hit.point);
 				portal1.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);	
 			} else {
-				portal2.position = hit.point;
+				portal2.SetParent(hit.transform); //acts a little goofy though, will need fixing
+				portal2.localPosition = hit.transform.InverseTransformPoint(hit.point);
 				portal2.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);
 			}
 		}
