@@ -7,13 +7,16 @@ public class portal_gun : MonoBehaviour {
 	public float fireRate = 0;
 	public LayerMask whatToHit;
 
-	public Transform portal1;
-	public Transform portal2;
+	private Transform portal1;
+	private Transform portal2;
 	public Transform BulletTrailPrefab;
 
 	public float effectSpawnRate = 10;
+	private float speed=5;
 	float timeToSpawnEffect = 0;
 	float timeToFire = 0;
+	private Rigidbody2D rb;
+	public GameObject trail;
 	Transform firePoint;
 
 	// Use this for initialization
@@ -22,6 +25,13 @@ public class portal_gun : MonoBehaviour {
 		if (firePoint == null)
 		{
 			Debug.LogError("No firepoint?");
+		}
+		Transform pair = transform.Find ("portal_pair");
+		if (pair != null) {
+			portal1 = pair.Find ("portal_A");
+			portal2 = pair.Find ("portal_B");
+		} else {
+			Debug.LogError ("Failed to find portal pair.");
 		}
 	}
 
@@ -72,20 +82,31 @@ public class portal_gun : MonoBehaviour {
 		{
 			timeToSpawnEffect = Time.time + 1 / effectSpawnRate;
 		}
-		Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition)*100);
+
 
 		if (hit.collider != null)
 		{
-			Debug.DrawLine(firePointPosition, hit.point, Color.red);
+			//Debug.DrawLine(firePointPosition, hit.point, Color.red);
 			Debug.Log("We hit" + hit.collider.name);
 			Debug.DrawRay (hit.point, hit.normal*3);
-			if (a) {
+			Vector3 save = hit.point;
+			Vector3 me = hit.normal;
+			Ray2D r2d = new Ray2D (firePointPosition, mousePosition - firePointPosition);
+			if (a) { 
 				//square raycast from hit point?
-				portal1.position = hit.point;
-				portal1.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);	
+				//Vector2 direction = mousePosition - firePointPosition;
+				//direction.Normalize();
+				Debug.DrawRay(r2d.origin,r2d.direction);
+				GameObject projectile = Instantiate(trail, firePointPosition, Quaternion.identity);
+				projectile.SetActive(true);
+				projectile.GetComponent<trail>().Initialize(r2d,save,me, portal1,25);
 			} else {
-				portal2.position = hit.point;
-				portal2.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);
+				//Vector2 direction = mousePosition - firePointPosition;
+				//direction.Normalize();
+				Debug.DrawRay(r2d.origin,r2d.direction);
+				GameObject projectile = Instantiate(trail, firePointPosition, Quaternion.identity);
+				projectile.SetActive(true);
+				projectile.GetComponent<trail>().Initialize(r2d,save,me, portal2,25);
 			}
 		}
 	}

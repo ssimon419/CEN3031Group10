@@ -26,15 +26,17 @@ public class SimplePortal : MonoBehaviour
 
     //Components to prevent calling GetComponent<>() over and over
 
-    private Rigidbody2D body;
+    private Transform body;
     private Transform trans;
 
 
     void Start()
     {
       //  collider = GetComponent<Collider2D>();
-        body = GetComponent<Rigidbody2D>();
+        body = GetComponent<Transform>();
         trans = GetComponent<Transform>();
+		gameObject.GetComponent<BoxCollider2D> ().isTrigger = false;
+		gameObject.GetComponent<BoxCollider2D> ().isTrigger = true;
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -49,8 +51,7 @@ public class SimplePortal : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other)
-    {
-        
+    {   
 
         //Make sure the object is allowed to go through the portal before we let it
 
@@ -69,13 +70,12 @@ public class SimplePortal : MonoBehaviour
 
                 Rigidbody2D objectBody = portalObject.GetComponent<Rigidbody2D>();
 
-
-
                 float relX = objectBody.position.x - body.position.x; //positive if to the right
                 float relY = objectBody.position.y - body.position.y; //positive if above
 
 
-			float a = (body.rotation + 90) * Mathf.PI / 180;
+			float a = (body.rotation.eulerAngles.z + 90) * Mathf.PI / 180;
+		
             
 
                 float dx = Mathf.Cos(a) * relX + Mathf.Sin(a) * relY;// + body.GetComponent<BoxCollider2D>().size.x * body.transform.localScale.x;
@@ -83,7 +83,7 @@ public class SimplePortal : MonoBehaviour
 
                 dy = 0;           
             
-			float a2 = (otherPortal.body.rotation+90) * Mathf.PI / 180;
+			float a2 = (otherPortal.body.rotation.eulerAngles.z+90) * Mathf.PI / 180;
 
 
            

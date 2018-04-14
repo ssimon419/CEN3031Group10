@@ -53,6 +53,7 @@ public class bullet : MonoBehaviour {
 		}
 		else if (other.gameObject.CompareTag ("ground")) {
 			gameObject.SetActive (false);
+
 		}
 		else if (other.gameObject.CompareTag ("environment")) {
 			other.gameObject.SendMessage ("objectDamage",damage);
