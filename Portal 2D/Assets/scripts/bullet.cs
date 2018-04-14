@@ -19,12 +19,14 @@ public class bullet : MonoBehaviour {
 	public bool sticky = false;
 	private Rigidbody2D rb2d;
 
+	private bool friendly=false;
 	private bool portaling=false;
 	private GameObject portal;
 	private Transform portal_orientation;
 
 	// Use this for initialization lol
 	public void Initialize(Ray2D r, float s, float fd,Color c,float f,float scl,int d){ //moveInDirection
+		friendly=false;
 		damage = d;
 		r2d = r;
 		speed = s;
@@ -44,13 +46,19 @@ public class bullet : MonoBehaviour {
 		rb2d.velocity = r2d.direction * speed * flip;
 	}
 
+	public void updateDirection(Ray2D ray){
+		r2d = ray;
+		rb2d.velocity = r2d.direction * speed * flip;
+	}
+
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject.CompareTag ("player_hit")) {
+		if (other.gameObject.CompareTag ("player_hit") && !friendly) {
 			other.gameObject.SendMessage ("playerDamage");
 			gameObject.SetActive (false);
 		} else if (other.gameObject.CompareTag("Portal")){
 			portaling = true;
-		} else if (other.gameObject.CompareTag ("enemy")) {
+			friendly = true;
+		} else if (other.gameObject.CompareTag ("enemy")&&friendly) {
 			other.gameObject.SendMessage ("enemyDamage", damage);
 			gameObject.SetActive (false);
 		}
@@ -67,6 +75,7 @@ public class bullet : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other){
 		if (other.gameObject.CompareTag ("Portal")) {
 			portaling = false;
+			friendly = true;
 		}
 	}
 }

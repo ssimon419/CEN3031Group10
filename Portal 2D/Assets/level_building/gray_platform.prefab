@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4326246621865628}
   - component: {fileID: 212036996922900850}
   - component: {fileID: 61861727997315116}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: gray_platform
-  m_TagString: ground
+  m_TagString: environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

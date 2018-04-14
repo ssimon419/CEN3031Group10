@@ -7,13 +7,16 @@ public class portal_gun : MonoBehaviour {
 	public float fireRate = 0;
 	public LayerMask whatToHit;
 
-	public Transform portal1;
-	public Transform portal2;
+	private Transform portal1;
+	private Transform portal2;
 	public Transform BulletTrailPrefab;
 
 	public float effectSpawnRate = 10;
+	private float speed=5;
 	float timeToSpawnEffect = 0;
 	float timeToFire = 0;
+	private Rigidbody2D rb;
+	public GameObject trail;
 	Transform firePoint;
 
 	// Use this for initialization
@@ -22,6 +25,13 @@ public class portal_gun : MonoBehaviour {
 		if (firePoint == null)
 		{
 			Debug.LogError("No firepoint?");
+		}
+		Transform pair = transform.Find ("portal_pair");
+		if (pair != null) {
+			portal1 = pair.Find ("portal_A");
+			portal2 = pair.Find ("portal_B");
+		} else {
+			Debug.LogError ("Failed to find portal pair.");
 		}
 	}
 
@@ -36,6 +46,17 @@ public class portal_gun : MonoBehaviour {
 		Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		float angle = Angle2(posOnScreen, mouseOnScreen);
 		transform.rotation = Quaternion.Euler (new Vector3 (0f, 0f, angle));
+
+		if (Input.GetKeyDown (KeyCode.R)) {
+			clear_portals ();
+		}
+
+		if (Input.GetKeyDown (KeyCode.C)) {
+			portal_arm (true);
+		}
+		if (Input.GetKeyUp (KeyCode.C)) {
+			portal_arm (false);
+		}
 
 		if (fireRate == 0)
 		{
@@ -63,6 +84,25 @@ public class portal_gun : MonoBehaviour {
 		}
 	}
 
+	void portal_arm(bool a){
+		if (a) {
+			portal1.gameObject.SetActive (true);
+			portal1.SetParent (transform);
+			portal1.position = firePoint.position;
+			Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+			Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
+			portal1.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
+			portal1.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), mousePosition-firePointPosition);
+		} else {
+			portal1.gameObject.SetActive (false);
+		}
+	}
+
+	public void clear_portals(){
+		portal1.gameObject.SetActive (false);
+		portal2.gameObject.SetActive (false);
+	}
+
 	void Shoot (bool a)
 	{
 		Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
@@ -72,23 +112,31 @@ public class portal_gun : MonoBehaviour {
 		{
 			timeToSpawnEffect = Time.time + 1 / effectSpawnRate;
 		}
-		Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition)*100);
 
 
 		if (hit.collider != null)
 		{
-			Debug.DrawLine(firePointPosition, hit.point, Color.red);
+			//Debug.DrawLine(firePointPosition, hit.point, Color.red);
 			Debug.Log("We hit" + hit.collider.name);
 			Debug.DrawRay (hit.point, hit.normal*3);
+			Vector3 save = hit.point;
+			Vector3 me = hit.normal;
+			Ray2D r2d = new Ray2D (firePointPosition, mousePosition - firePointPosition);
 			if (a) { 
 				//square raycast from hit point?
-				portal1.SetParent(hit.transform); //assigns portals to the objects they hit so that they move relative to these objects
-				portal1.localPosition = hit.transform.InverseTransformPoint(hit.point);
-				portal1.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);	
+				//Vector2 direction = mousePosition - firePointPosition;
+				//direction.Normalize();
+				Debug.DrawRay(r2d.origin,r2d.direction);
+				GameObject projectile = Instantiate(trail, firePointPosition, Quaternion.identity);
+				projectile.SetActive(true);
+				projectile.GetComponent<trail>().Initialize(r2d,save,me, portal1,25);
 			} else {
-				portal2.SetParent(hit.transform); //acts a little goofy though, will need fixing
-				portal2.localPosition = hit.transform.InverseTransformPoint(hit.point);
-				portal2.rotation = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), hit.normal);
+				//Vector2 direction = mousePosition - firePointPosition;
+				//direction.Normalize();
+				Debug.DrawRay(r2d.origin,r2d.direction);
+				GameObject projectile = Instantiate(trail, firePointPosition, Quaternion.identity);
+				projectile.SetActive(true);
+				projectile.GetComponent<trail>().Initialize(r2d,save,me, portal2,25);
 			}
 		}
 	}

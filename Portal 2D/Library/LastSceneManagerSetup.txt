@@ -3,6 +3,9 @@ sceneSetups:
   isLoaded: 0
   isActive: 0
 - path: Assets/Level1_Segment3.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/boss_zone.unity
   isLoaded: 1
   isActive: 1
 - path: Assets/MainMenu.unity
