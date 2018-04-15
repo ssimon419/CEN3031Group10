@@ -1,16 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\portal_gun.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\boss1_defense.cs">
     <Files>
       <File FileName="Assets\scripts\spinner.cs" Line="1" Column="1" />
       <File FileName="Assets\CanEnterPortal.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\portal_gun.cs" Line="90" Column="32" />
+      <File FileName="Assets\scripts\portal_gun.cs" Line="1" Column="1" />
       <File FileName="Assets\trail.cs" Line="54" Column="4" />
-      <File FileName="Assets\scripts\bullet.cs" Line="29" Column="18" />
-      <File FileName="Assets\switchObject.cs" Line="23" Column="9" />
-      <File FileName="Assets\scripts\aimingSpawner.cs" Line="60" Column="5" />
-      <File FileName="Assets\scripts\Boss1.cs" Line="129" Column="16" />
-      <File FileName="Assets\arenaHandler.cs" Line="24" Column="89" />
+      <File FileName="Assets\scripts\bullet.cs" Line="79" Column="4" />
+      <File FileName="Assets\switchObject.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\playerScript.cs" Line="29" Column="28" />
+      <File FileName="Assets\scripts\aimingSpawner.cs" Line="95" Column="28" />
+      <File FileName="Assets\arenaHandler.cs" Line="27" Column="89" />
+      <File FileName="Assets\scripts\Boss1.cs" Line="99" Column="40" />
+      <File FileName="Assets\boss1_defense.cs" Line="24" Column="3" />
+      <File FileName="Assets\scripts\FinalBoss.cs" Line="84" Column="23" />
+      <File FileName="Assets\Standard Assets\2D\Scripts\PlatformerCharacter2D.cs" Line="59" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

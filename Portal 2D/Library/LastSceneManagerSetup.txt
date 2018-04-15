@@ -8,6 +8,9 @@ sceneSetups:
 - path: Assets/boss_zone.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/final_boss_zone.unity
+  isLoaded: 0
+  isActive: 0
 - path: Assets/MainMenu.unity
   isLoaded: 0
   isActive: 0

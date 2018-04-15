@@ -17,14 +17,14 @@ public class arenaHandler : MonoBehaviour {
 	// Update is called once per frame
 	public void swap() {
 		for (int i = 0; i < platforms.Length; ++i) {
-			if (env) {
+			if (platforms[i].CompareTag("environment")) {
+				platforms [i].GetComponent<SpriteRenderer> ().sprite = spr [1];
+				platforms [i].tag = "ground";
+			} else {
 				platforms [i].GetComponent<SpriteRenderer> ().sprite = spr [0];
 				platforms [i].tag = "environment";
 				if (platforms [i].GetComponentInChildren<SimplePortal> ())
 					platforms [i].GetComponentInChildren<SimplePortal> ().gameObject.SetActive (false);
-			} else {
-				platforms [i].GetComponent<SpriteRenderer> ().sprite = spr [1];
-				platforms [i].tag = "ground";
 			}
 		}
 		env = !env;

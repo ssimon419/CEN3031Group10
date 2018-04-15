@@ -38,7 +38,7 @@ public class FinalBoss : MonoBehaviour {
         }
 
       //  InvokeRepeating("fireMissiles", 0f, 4f);
-        InvokeRepeating("airstrikes", 0f, 4f);
+        InvokeRepeating("airstrike", 0f, 4f);
     }
 
     void Update()
@@ -49,7 +49,7 @@ public class FinalBoss : MonoBehaviour {
 
     void fireMissiles()
     {
-        newBullet = GameObject.FindGameObjectWithTag("Bullet");
+		newBullet = pool_manager.heldPools [0].GetPooledObject ();
 
 
         newBullet.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -81,7 +81,7 @@ public class FinalBoss : MonoBehaviour {
 
     void airstrike ()
     {
-        GameObject missile1 = GameObject.FindGameObjectWithTag("Bullet");
+		GameObject missile1 = pool_manager.heldPools [0].GetPooledObject ();
       //  GameObject missile2 = GameObject.FindGameObjectWithTag("Bullet");
      //   GameObject missile3 = GameObject.FindGameObjectWithTag("Bullet");
 

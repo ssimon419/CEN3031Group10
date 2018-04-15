@@ -9,6 +9,8 @@ TagManager:
   - environment
   - player_hit
   - enemy
+  - pain
+  - trail
   layers:
   - Default
   - TransparentFX

@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\activation_radius.cs" />
      <Compile Include="Assets\arenaHandler.cs" />
+     <Compile Include="Assets\boss1_defense.cs" />
      <Compile Include="Assets\CanEnterPortal.cs" />
      <Compile Include="Assets\destructible_object.cs" />
      <Compile Include="Assets\enemies\AstarPathfindingProject\Behaviors\AIDestinationSetter.cs" />

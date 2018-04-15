@@ -53,7 +53,7 @@ public class bullet : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.CompareTag ("player_hit") && !friendly) {
-			other.gameObject.SendMessage ("playerDamage");
+			other.gameObject.SendMessage ("playerDamage",damage);
 			gameObject.SetActive (false);
 		} else if (other.gameObject.CompareTag("Portal")){
 			portaling = true;

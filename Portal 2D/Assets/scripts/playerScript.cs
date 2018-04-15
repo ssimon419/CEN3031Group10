@@ -11,9 +11,9 @@ public class playerScript : MonoBehaviour {
 	private bool invincible=false;
 
 	// Use this for initialization
-	void playerDamage(){
+	void playerDamage(int dmg){
 		if (health > 0 && !invincible) {
-			--health;
+			health-=dmg;
 			invincible = true;
 			Invoke ("cancelInvincible", 3f);
 		} else if (health <= 0 && !invincible) {
@@ -28,4 +28,11 @@ public class playerScript : MonoBehaviour {
 	void playerLose(){
 		player.SetActive (false);
 	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.CompareTag ("pain")) {
+			playerDamage(3);
+		}
+	}
+
 }
