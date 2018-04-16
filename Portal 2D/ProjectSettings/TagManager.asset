@@ -11,6 +11,7 @@ TagManager:
   - enemy
   - pain
   - trail
+  - bullet
   layers:
   - Default
   - TransparentFX

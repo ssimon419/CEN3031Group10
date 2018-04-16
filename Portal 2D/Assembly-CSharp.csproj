@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\activation_radius.cs" />
+     <Compile Include="Assets\area_boundary.cs" />
      <Compile Include="Assets\arenaHandler.cs" />
      <Compile Include="Assets\boss1_defense.cs" />
      <Compile Include="Assets\CanEnterPortal.cs" />

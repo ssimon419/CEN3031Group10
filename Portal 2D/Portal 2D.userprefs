@@ -1,22 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\enemyScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\arenaHandler.cs">
     <Files>
-      <File FileName="Assets\scripts\spinner.cs" Line="74" Column="7" />
-      <File FileName="Assets\scripts\bullet.cs" Line="5" Column="22" />
-      <File FileName="Assets\scripts\playerScript.cs" Line="15" Column="69" />
-      <File FileName="Assets\scripts\aimingSpawner.cs" Line="32" Column="123" />
-      <File FileName="Assets\scripts\Boss1.cs" Line="74" Column="18" />
+      <File FileName="Assets\scripts\spinner.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\bullet.cs" Line="17" Column="21" />
+      <File FileName="Assets\scripts\playerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\aimingSpawner.cs" Line="123" Column="10" />
+      <File FileName="Assets\scripts\Boss1.cs" Line="89" Column="45" />
       <File FileName="Assets\boss1_defense.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\FinalBoss.cs" Line="40" Column="6" />
-      <File FileName="Assets\missile.cs" Line="140" Column="2" />
-      <File FileName="Assets\destructible_object.cs" Line="23" Column="67" />
-      <File FileName="Assets\explosion_behavior.cs" Line="14" Column="57" />
-      <File FileName="Assets\trail.cs" Line="52" Column="79" />
-      <File FileName="Assets\scripts\portal_gun.cs" Line="139" Column="73" />
-      <File FileName="Assets\Standard Assets\2D\Scripts\Platformer2DUserControl.cs" Line="46" Column="70" />
-      <File FileName="Assets\arenaHandler.cs" Line="36" Column="12" />
-      <File FileName="Assets\enemyScript.cs" Line="18" Column="46" />
+      <File FileName="Assets\scripts\FinalBoss.cs" Line="74" Column="35" />
+      <File FileName="Assets\missile.cs" Line="1" Column="1" />
+      <File FileName="Assets\destructible_object.cs" Line="1" Column="1" />
+      <File FileName="Assets\explosion_behavior.cs" Line="15" Column="28" />
+      <File FileName="Assets\trail.cs" Line="1" Column="1" />
+      <File FileName="Assets\enemyScript.cs" Line="23" Column="9" />
+      <File FileName="Assets\area_boundary.cs" Line="12" Column="75" />
+      <File FileName="Assets\arenaHandler.cs" Line="48" Column="61" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -48,8 +48,6 @@ public class trail : MonoBehaviour
         else if (other.gameObject.CompareTag("ground"))
         {
 			portal.gameObject.SetActive (true);
-			portal.gameObject.transform.SetParent(transform);
-			portal.gameObject.transform.localScale = new Vector3 (1.13f, 1.13f, 1.13f);
 			RaycastHit2D hit = Physics2D.Raycast(firepoint.position, transform.position-firepoint.position, 100,whatToHit);
 			Debug.DrawRay (hit.point, hit.normal,Color.black);
 			portal.SetParent(other.transform); //assigns portals to the objects they hit so that they move relative to these objects

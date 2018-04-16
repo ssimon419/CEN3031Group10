@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114995636758652552}
   m_Layer: 9
   m_Name: bullet
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
   randomForce: 0
   persist: 0
   sticky: 0
+  friendly: 0
 --- !u!114 &114995636758652552
 MonoBehaviour:
   m_ObjectHideFlags: 1

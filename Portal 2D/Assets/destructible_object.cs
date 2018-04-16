@@ -14,14 +14,15 @@ public class destructible_object : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
+		if (coll.gameObject.CompareTag("Player")) {
+			Debug.Log ("hit player!"+coll.relativeVelocity.magnitude);
+			if (coll.relativeVelocity.magnitude > 25) {
+				coll.gameObject.GetComponentInChildren<playerScript> ().playerDamage (10);
+			}
+		}
 		if (coll.gameObject.CompareTag ("ground")) {
 			if (coll.relativeVelocity.magnitude > 3) {
 				objectDamage ((int)coll.relativeVelocity.magnitude / 2);
-				Debug.Log ("damage: " + coll.relativeVelocity.magnitude);
-			}
-		} else if (coll.otherCollider.gameObject.CompareTag ("Player")) {
-			if (gameObject.GetComponent<Rigidbody2D>().velocity.magnitude>1) {
-				coll.otherCollider.gameObject.GetComponent<playerScript> ().playerDamage (10);
 			}
 		}
 	}

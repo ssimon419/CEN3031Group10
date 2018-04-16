@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class enemyScript : MonoBehaviour {
 	public int health;
+	private int maxHealth;
 	public GameObject explosion;
 	public bool boss;
 	public RectTransform healthBar;
@@ -11,14 +12,15 @@ public class enemyScript : MonoBehaviour {
 	private SpriteRenderer spr;
 
 	void Awake(){
+		maxHealth = health;
 		spr = GetComponent<SpriteRenderer> ();
 	}
 
 	void Update(){
-		healthBar.sizeDelta = new Vector2 (health*4, healthBar.sizeDelta.y);
+		if(boss) healthBar.sizeDelta = new Vector2 (health, healthBar.sizeDelta.y);
 	}
 
-	void enemyDamage(int dmg){
+	public void enemyDamage(int dmg){
 		if (health > 0) {
 			health-=dmg;
 		} 

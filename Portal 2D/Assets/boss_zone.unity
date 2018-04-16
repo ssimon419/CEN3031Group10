@@ -1570,9 +1570,9 @@ MonoBehaviour:
   jumpForce: 50
   bulletSpeed: 5
   bulletDelay: 0
-  bulletColor: {r: 0.22794116, g: 1, b: 0.32910758, a: 0.491}
+  bulletColor: {r: 0.36764705, g: 1, b: 0.9476675, a: 1}
   bulletSize: 4
-  bulletDamage: 3
+  bulletDamage: 20
   arena: {fileID: 131107896}
   m_WhatIsGround:
     serializedVersion: 2
@@ -1711,7 +1711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a1d4bf8f429dd49972a54014c1ec90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 400
   explosion: {fileID: 328069098}
   boss: 1
   healthBar: {fileID: 2105979105}

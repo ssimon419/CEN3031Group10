@@ -19,6 +19,7 @@ public class aimingSpawner : MonoBehaviour {
 	public float size;
 	public float rotSpeed;
 	public bool gatling;
+	public float spread=0f;
 
 	private bool activating=false;
 	private bool aiming=false;
@@ -29,7 +30,7 @@ public class aimingSpawner : MonoBehaviour {
 	
 	// Update is called once per frame'
 
-	void Initialize_Gatling(Transform tr, int dmg, Color col, float d, float s, float r, float sz, float rs){ //gatling rapid
+	public void Initialize_Gatling(Transform tr, int dmg, Color col, float d, float s, float r, float sz, float rs, float spr){ //gatling rapid
 		target = tr;
 		damage = dmg;
 		c = col;
@@ -38,9 +39,10 @@ public class aimingSpawner : MonoBehaviour {
 		fireRate = r;
 		size = sz;
 		rotSpeed = rs;
+		spread = spr;
 	}
 
-	void Initialize_Gatling(Transform tr, int dmg, Color col, float d, float s, float r, float sz, float rs, float bAmt, float bDel, bool enF){ //gatling burst
+	public void Initialize_Gatling(Transform tr, int dmg, Color col, float d, float s, float r, float sz, float rs, float spr, float bAmt, float bDel, bool enF){ //gatling burst
 		burst = true;
 		burstAmount = bAmt;
 		burstDelay = bDel;
@@ -54,6 +56,7 @@ public class aimingSpawner : MonoBehaviour {
 		fireRate = r;
 		size = sz;
 		rotSpeed = rs;
+		spread = spr;
 	}
 
 	void Awake(){
@@ -117,7 +120,11 @@ public class aimingSpawner : MonoBehaviour {
 			Invoke ("end_fire", 0.05f);
 		}
 		GameObject boolet = pool_manager.heldPools [0].GetPooledObject ();
-		Ray2D r2d = new Ray2D (center.position, source.position - center.position);
+		Vector3 new_pos = source.position;
+		if (spread > 0f) {
+			new_pos = new Vector3 (source.position.x + Random.Range (spread * -1f, spread),source.position.y);
+		}
+		Ray2D r2d = new Ray2D (center.position, new_pos - center.position);
 		if (burst && first) {
 			boolet.SetActive (true);
 			boolet.GetComponent<Transform>().position = source.position;

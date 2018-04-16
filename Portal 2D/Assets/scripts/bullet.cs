@@ -20,7 +20,7 @@ public class bullet : MonoBehaviour {
 	private Rigidbody2D rb2d;
 	private Transform target;
 
-	private bool friendly=false;
+	public bool friendly=false;
 	private bool portaling=false;
 	private bool homing=false;
 	private float homing_rate=0.5f;
