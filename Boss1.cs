@@ -18,6 +18,12 @@ public class Boss1 : MonoBehaviour {
 
     public float jumpForce = 20f;
 
+    public float bulletSpeed;
+    public float bulletDelay;
+    public Color bulletColor;
+    public float bulletSize;
+    public int bulletDamage; 
+
 
     private Seeker seeker;
     private Rigidbody2D rb;
@@ -28,7 +34,10 @@ public class Boss1 : MonoBehaviour {
     private Vector3 slam = new Vector3(0f, -5f, 0f);
 
     private Collider2D targetCol;
-    
+
+    private int invokeCount;
+    private int bigInvokeCount;
+
     // Use this for initialization
     void Awake () {
         seeker = GetComponent<Seeker>();
@@ -54,7 +63,6 @@ public class Boss1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         if (playerHealth <= 0)
         {
             Destroy(target);
@@ -65,12 +73,15 @@ public class Boss1 : MonoBehaviour {
         {
             Destroy(target);
         }
+        
     }
 
 
     void chooseAttack()
     {
-        /*int choosenAttack = Random.Range(1, 3);
+        col.radius = 0.5f;
+        sr.color = Color.cyan;
+        int choosenAttack = Random.Range(1, 4);
 
         if (choosenAttack == 1)
         {
@@ -79,21 +90,34 @@ public class Boss1 : MonoBehaviour {
         }
         else if (choosenAttack == 2)
         {
-            attack2();
+            bigInvokeCount = 0;
+            InvokeRepeating("attack2", 0f, 2f);
             Debug.Log("Attack 2 was chosen!");
         }
         else if (choosenAttack == 3)
         {
-            attack3();
+            sr.color = Color.green;
+          //  StartCoroutine(meleeYeild());
+            bigInvokeCount = 0;
+            InvokeRepeating("attack3", 2f, 3f);
             Debug.Log("Attack 3 was chosen!");
+            col.radius = 0.5f;
         }
         else
         {
             Debug.LogError("No error was chosen!");
         }
-        */
-        attack1();
+        
+        
     }
+
+  /*  IEnumerator meleeYeild()
+    {
+        Debug.Log("Waiting 2 seconds");
+        yield return new WaitForSeconds(2);
+    }
+    */
+
     // ground slam
     void attack1()
     {
@@ -135,14 +159,48 @@ public class Boss1 : MonoBehaviour {
 
     void attack2()
     {
-        // shooting
+        sr.color = Color.red;
+        bigInvokeCount++;
+        if (bigInvokeCount >= 3)
+            CancelInvoke("attack2");
+        invokeCount = 0;
+        InvokeRepeating("fireBullet", 0f, .2f);
     }
+
+    void fireBullet()
+    {
+        Vector3 targetPosition = new Vector3(target.transform.position.x, target.transform.position.y, 0);
+
+        GameObject newBullet = GameObject.FindGameObjectWithTag("Bullet");
+
+
+        newBullet.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        Ray2D r2d = new Ray2D(newBullet.transform.position, targetPosition - newBullet.transform.position);
+
+        Debug.DrawLine(newBullet.transform.position, targetPosition, Color.red, 1f);
+        newBullet.GetComponent<bullet>().Initialize(r2d, bulletSpeed, bulletDelay, bulletColor, 1f, bulletSize, bulletDamage); //direction,speed,delay,color,flip?
+
+        invokeCount++;
+        if (invokeCount >= 2)
+            CancelInvoke("fireBullet");
+}
 
     void attack3()
     {
-        // melee
+        sr.color = Color.black;
+
+        bigInvokeCount++;
+        if (bigInvokeCount >= 1)
+            CancelInvoke("attack3");
+        col.radius = 1f;
     }
 
-
+    /*
+     * invokerepeating with a wait delay
+     * raycast to target on repeat
+     * 
+     * 
+     * */
    
 }
