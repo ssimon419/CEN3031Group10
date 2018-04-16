@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class playerScript : MonoBehaviour {
 
-	public int health = 3;
+	public int health = 100;
 	public GameObject player;
+	public RectTransform healthBar;
 
 	private Animator p_Anim;
 	private bool invincible=false;
 
+	void Update(){
+		healthBar.sizeDelta = new Vector2 (health, healthBar.sizeDelta.y);
+	}
+
 	// Use this for initialization
-	void playerDamage(int dmg){
+	public void playerDamage(int dmg){
 		if (health > 0 && !invincible) {
-			health-=dmg;
+			health -= 10;
 			invincible = true;
 			Invoke ("cancelInvincible", 3f);
 		} else if (health <= 0 && !invincible) {
@@ -31,7 +36,7 @@ public class playerScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.CompareTag ("pain")) {
-			playerDamage(3);
+			playerDamage(10);
 		}
 	}
 

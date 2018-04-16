@@ -11,7 +11,8 @@ public class FinalBoss : MonoBehaviour {
     public Color bulletColor;
     public float bulletSize;
     public int bulletDamage;
-
+	public GameObject arena;
+	public GameObject train;
 
     private Rigidbody2D rb;
     private CircleCollider2D col;
@@ -22,46 +23,156 @@ public class FinalBoss : MonoBehaviour {
     private int invokeCount;
     private int bigInvokeCount;
 
+	private bool attacking=false;
+
     private GameObject newBullet;
+	public Transform[] positions;
+	public GameObject[] turrets;
+	private bool missiles=false;
+	private bool airstrikes=false;
+	private bool turret_atk=false;
+	private bool train_alt=false;
+	private int train_launch=0;
+	private float count = 0f;
+	private float nextTime = 0.0f;
 
     void Awake()
     {
+		train.transform.localScale.Set (0f, 0f, 0f);
+		train.SetActive (false);
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         targetCol = target.GetComponent<BoxCollider2D>();
-
+		transform.position = positions [0].position;
         if (target == null)
         {
             Debug.LogError("No player found? HELPPP!");
             return;
         }
-
-      //  InvokeRepeating("fireMissiles", 0f, 4f);
-        InvokeRepeating("airstrike", 0f, 4f);
+      //  InvokeRepeating("airstrike", 0f, 4f);
     }
 
-    void Update()
+    void Update() //0 - bleft 1 - bright 2 - tleft 3 -tright
     {
-        
+		if (!attacking) {
+			int chosenAttack = Random.Range (1, 5);
+			//int chosenAttack=999;
+			if (chosenAttack == 1) {
+				Debug.Log ("chose missiles");
+				missiles = true;
+				transform.position = positions [0].position;
+				InvokeRepeating("fireMissiles", 0f, 0.8f);
+			} if (chosenAttack == 2) {
+				Debug.Log ("turret setup");
+				turret_atk = true;
+				transform.position = positions [4].position;
+			} else if (chosenAttack == 3) {
+				Debug.Log ("chose airstrikes");
+				airstrikes = true;
+			} else {
+				Debug.Log ("launching train");
+				arena.GetComponent<arenaHandler> ().swap (3,5);
+				train.GetComponent<destructible_object> ().obj_health = 50;
+				if (Random.Range (1, 3) == 1) {
+					train.GetComponent<destructible_object> ().obj_health = 9999;
+					train_alt = true;
+				}
+				train.GetComponent<SpriteRenderer> ().enabled = true;
+				train_launch = 1;
+			}
+			attacking = true;
+		} else if (attacking) {
+			if (missiles) {
+				if (transform.position.x < positions [1].position.x) {
+					transform.Translate (0.15f, 0f, 0f);
+				} else {			
+					CancelInvoke ("fireMissiles");
+					missiles = false;
+				}
+			} else if (train_launch>=1) {
+				train_time ();
+			} else if (airstrikes) {
+				airstrikes = false;
+			} else if (turret_atk) {
+				if (transform.position.x < positions [1].position.x) {
+					transform.Translate (0.15f, 0f, 0f);
+				}
+				turret_atk = false;
+			} else {
+				CancelInvoke ();
+				attacking = false;
+			}
+		}
     }
+
+	void train_time(){ //all handling for both train attacks :>
+		if (train_launch == 1) {
+			count = 0f;
+			if (!train_alt)
+				transform.position = positions [6].position; //throw train
+			else
+				transform.position = positions [8].position; //fire train
+			train.SetActive (true);
+			train.transform.position = transform.position;
+			++train_launch;
+		} else if (train_launch == 2) {
+			if (count > 5f) {
+				++train_launch;
+			} else if (Time.time > nextTime) {
+				if (!train_alt)
+					train.transform.localScale = new Vector3 (count, count, count);
+				else {
+					for (int i = 0; i < 3; ++i) {
+						float curVal = Mathf.Min (count, 2.4f);
+						train.transform.localScale = new Vector3 (curVal, curVal, curVal);
+						arena.GetComponent<arenaHandler> ().platforms [i].transform.Translate (0f, 0.04f, 0f);
+					}
+				}
+				count += 0.05f;
+				nextTime = Time.time + 0.05f;
+			}
+		} else if (train_launch == 3) {
+			if (!train_alt)
+				train.GetComponent<Rigidbody2D> ().AddForceAtPosition (new Vector2 (300f, 900f), positions [7].position, ForceMode2D.Impulse);
+			else
+				train.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (1500f, 0f), ForceMode2D.Impulse);
+			count = 0f;
+			nextTime = Time.time + 5f;
+			train_launch = 4;
+		} else if (train_launch == 4) {
+			if (count > 5f) {
+				train.transform.localScale = new Vector3(0f, 0f, 0f);
+				train.transform.position= transform.position;
+				train.SetActive (false);
+				train_alt = false;
+				train_launch = 0;
+				arena.GetComponent<arenaHandler> ().swap (3,5);
+			} else if (Time.time > nextTime) {
+				if (train_alt) {
+					for (int i = 0; i < 3; ++i) {
+						arena.GetComponent<arenaHandler> ().platforms [i].transform.Translate (0f, -0.04f, 0f);
+					}
+				}
+				count += 0.05f;
+				nextTime = Time.time + 0.05f;
+			}
+		}
+	}
 
 
     void fireMissiles()
     {
-		newBullet = pool_manager.heldPools [0].GetPooledObject ();
+		GameObject boolet = pool_manager.heldPools [2].GetPooledObject ();
 
 
-        newBullet.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        Vector3 targetPosition = new Vector3(newBullet.transform.position.x, newBullet.transform.position.y + 1000, 0);
+        boolet.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3 targetPosition = new Vector3(boolet.transform.position.x, boolet.transform.position.y + 1000, 0);
 
-        Ray2D r2d = new Ray2D(newBullet.transform.position, targetPosition - newBullet.transform.position);
-
-        Debug.DrawLine(newBullet.transform.position, targetPosition, Color.red, 1f);
-        newBullet.GetComponent<bullet>().Initialize(r2d, bulletSpeed, bulletDelay, bulletColor, 1f, bulletSize, bulletDamage); //direction,speed,delay,color,flip?
-
-        bigInvokeCount = 0;
-        InvokeRepeating("chaseTarget", 1f, 0.3f);
+        Ray2D r2d = new Ray2D(boolet.transform.position, targetPosition - boolet.transform.position);
+		boolet.SetActive (true);
+		boolet.GetComponent<missile>().Initialize(target.transform, r2d, bulletSpeed, 5f, bulletDelay, 2f, 5f, bulletColor, 1f, bulletSize, bulletDamage); 
+		//target,init direction, speed, homing rate, fire delay, homing delay, homing decay option, color, flip?, size, damage
     }
 
 
@@ -81,7 +192,7 @@ public class FinalBoss : MonoBehaviour {
 
     void airstrike ()
     {
-		GameObject missile1 = pool_manager.heldPools [0].GetPooledObject ();
+		GameObject missile1 = pool_manager.heldPools [2].GetPooledObject ();
       //  GameObject missile2 = GameObject.FindGameObjectWithTag("Bullet");
      //   GameObject missile3 = GameObject.FindGameObjectWithTag("Bullet");
 
@@ -104,7 +215,7 @@ public class FinalBoss : MonoBehaviour {
      //   Debug.DrawLine(missile2.transform.position, targetPosition2, Color.red, 1f);
       //  Debug.DrawLine(missile3.transform.position, targetPosition3, Color.red, 1f);
 
-
+		missile1.SetActive (true);
         missile1.GetComponent<bullet>().Initialize(r2d1, bulletSpeed, bulletDelay, bulletColor, 1f, bulletSize, bulletDamage); //direction,speed,delay,color,flip?
       //  missile2.GetComponent<bullet>().Initialize(r2d1, bulletSpeed, bulletDelay, bulletColor, 1f, bulletSize, bulletDamage); //direction,speed,delay,color,flip?
       //  missile3.GetComponent<bullet>().Initialize(r2d1, bulletSpeed, bulletDelay, bulletColor, 1f, bulletSize, bulletDamage); //direction,speed,delay,color,flip?

@@ -17,7 +17,11 @@ public class destructible_object : MonoBehaviour {
 		if (coll.gameObject.CompareTag ("ground")) {
 			if (coll.relativeVelocity.magnitude > 3) {
 				objectDamage ((int)coll.relativeVelocity.magnitude / 2);
-				Debug.Log ("damage: "+coll.relativeVelocity.magnitude);
+				Debug.Log ("damage: " + coll.relativeVelocity.magnitude);
+			}
+		} else if (coll.otherCollider.gameObject.CompareTag ("Player")) {
+			if (gameObject.GetComponent<Rigidbody2D>().velocity.magnitude>1) {
+				coll.otherCollider.gameObject.GetComponent<playerScript> ().playerDamage (10);
 			}
 		}
 	}
@@ -25,13 +29,18 @@ public class destructible_object : MonoBehaviour {
 	void objectDamage(int damage){
 		if (obj_health > 0) {
 			obj_health-=damage;
+			if (obj_health <= 0) {
+				explode ();
+			}
 		}
-		if (obj_health <= 0) {
-			spr.enabled = false;
-			if (explosion != null)
-				explosion.SetActive (true);
-			else
-				Destroy (gameObject);
-		}
+	}
+
+	void explode(){
+		gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		spr.enabled = false;
+		if (explosion != null)
+			explosion.SetActive (true);
+		else
+			gameObject.SetActive (false);
 	}
 }

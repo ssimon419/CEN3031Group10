@@ -5,8 +5,14 @@ using UnityEngine;
 public class explosion_behavior : MonoBehaviour {
 
 	public GameObject parent;
+
+	void OnEnable(){
+		transform.rotation = Quaternion.identity;
+	}
 	
 	void finish_explosion(){
-		Destroy (parent);
+		parent.GetComponent<MonoBehaviour> ().CancelInvoke ();
+		parent.SetActive (false);
+		gameObject.SetActive (false);
 	}
 }

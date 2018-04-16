@@ -6,7 +6,7 @@ public class aimingSpawner : MonoBehaviour {
 
 	public Transform source;
 	public Transform center;
-	public GameObject target;
+	public Transform target;
 	public int damage;
 	public bool burst;
 	public float burstAmount;
@@ -27,7 +27,34 @@ public class aimingSpawner : MonoBehaviour {
 	private Animator anim;
 	private bool first=false;
 	
-	// Update is called once per frame
+	// Update is called once per frame'
+
+	void Initialize_Gatling(Transform tr, int dmg, Color col, float d, float s, float r, float sz, float rs){ //gatling rapid
+		target = tr;
+		damage = dmg;
+		c = col;
+		initDelay = d;
+		bulletSpd = s;
+		fireRate = r;
+		size = sz;
+		rotSpeed = rs;
+	}
+
+	void Initialize_Gatling(Transform tr, int dmg, Color col, float d, float s, float r, float sz, float rs, float bAmt, float bDel, bool enF){ //gatling burst
+		burst = true;
+		burstAmount = bAmt;
+		burstDelay = bDel;
+		enlargeFirst = enF;
+
+		target = tr;
+		damage = dmg;
+		c = col;
+		initDelay = d;
+		bulletSpd = s;
+		fireRate = r;
+		size = sz;
+		rotSpeed = rs;
+	}
 
 	void Awake(){
 		anim = GetComponent<Animator> ();
@@ -61,7 +88,7 @@ public class aimingSpawner : MonoBehaviour {
 			}
 		} 
 		if(aiming) {
-			Quaternion targRot = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), target.transform.position - gameObject.transform.position);
+			Quaternion targRot = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), target.position - gameObject.transform.position);
 			float str = Mathf.Min (rotSpeed * Time.deltaTime, 1);
 			gameObject.transform.rotation = Quaternion.Lerp (gameObject.transform.rotation, targRot, str);
 		}

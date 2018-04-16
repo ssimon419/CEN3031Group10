@@ -5,11 +5,17 @@ using UnityEngine;
 public class enemyScript : MonoBehaviour {
 	public int health;
 	public GameObject explosion;
+	public bool boss;
+	public RectTransform healthBar;
 
 	private SpriteRenderer spr;
 
 	void Awake(){
 		spr = GetComponent<SpriteRenderer> ();
+	}
+
+	void Update(){
+		healthBar.sizeDelta = new Vector2 (health*4, healthBar.sizeDelta.y);
 	}
 
 	void enemyDamage(int dmg){

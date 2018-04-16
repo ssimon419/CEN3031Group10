@@ -129,14 +129,14 @@ public class portal_gun : MonoBehaviour {
 				Debug.DrawRay(r2d.origin,r2d.direction);
 				GameObject projectile = Instantiate(trail, firePointPosition, Quaternion.identity);
 				projectile.SetActive(true);
-				projectile.GetComponent<trail>().Initialize(r2d,save,me, portal1,25);
+				projectile.GetComponent<trail>().Initialize(r2d,firePoint, portal1,20);
 			} else {
 				//Vector2 direction = mousePosition - firePointPosition;
 				//direction.Normalize();
 				Debug.DrawRay(r2d.origin,r2d.direction);
 				GameObject projectile = Instantiate(trail, firePointPosition, Quaternion.identity);
 				projectile.SetActive(true);
-				projectile.GetComponent<trail>().Initialize(r2d,save,me, portal2,25);
+				projectile.GetComponent<trail>().Initialize(r2d,firePoint, portal2,20);
 			}
 		}
 	}

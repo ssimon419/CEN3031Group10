@@ -11,9 +11,14 @@ namespace UnityStandardAssets._2D
         private bool m_Jump;
 		private bool crouch=false;
 
+		public RectTransform time_bar;
+		private float cur_time;
+		private float max_time=100f;
+
 
         private void Awake()
         {
+			cur_time = 100f;
             m_Character = GetComponent<PlatformerCharacter2D>();
         }
 
@@ -28,11 +33,17 @@ namespace UnityStandardAssets._2D
 			if (Input.GetKeyDown(KeyCode.CapsLock)){
 				crouch=!crouch;
 			}
-			if (crouch) {
+			if (crouch&&cur_time>0f) {
 				Time.timeScale = 0.5f;
+				cur_time -= 0.25f;
 			} else {
+				crouch = false;
 				Time.timeScale = 1.0f;
 			}
+			if (!crouch && cur_time < max_time) {
+				cur_time += 0.1f;
+			}
+			time_bar.sizeDelta = new Vector2 (cur_time, time_bar.sizeDelta.y);
         }
 
 

@@ -7,7 +7,6 @@ public class arenaHandler : MonoBehaviour {
 	public GameObject[] platforms;
 	public Sprite[] spr;
 
-	private bool env=true;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +26,19 @@ public class arenaHandler : MonoBehaviour {
 					platforms [i].GetComponentInChildren<SimplePortal> ().gameObject.SetActive (false);
 			}
 		}
-		env = !env;
+	}
+
+	public void swap(int a, int b) {
+		for (int i = a; i < b+1; ++i) {
+			if (platforms[i].CompareTag("environment")) {
+				platforms [i].GetComponent<SpriteRenderer> ().sprite = spr [1];
+				platforms [i].tag = "ground";
+			} else {
+				platforms [i].GetComponent<SpriteRenderer> ().sprite = spr [0];
+				platforms [i].tag = "environment";
+				if (platforms [i].GetComponentInChildren<SimplePortal> ())
+					platforms [i].GetComponentInChildren<SimplePortal> ().gameObject.SetActive (false);
+			}
+		}
 	}
 }
