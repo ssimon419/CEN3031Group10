@@ -2,12 +2,12 @@ sceneSetups:
 - path: Assets/Test Chamber 1.unity
   isLoaded: 0
   isActive: 0
-- path: Assets/Level1_Segment3.unity
-  isLoaded: 0
-  isActive: 0
-- path: Assets/boss_zone.unity
+- path: Assets/BoatSegment.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/boss_zone.unity
+  isLoaded: 0
+  isActive: 0
 - path: Assets/final_boss_zone.unity
   isLoaded: 0
   isActive: 0
