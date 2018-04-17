@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/boss_zone.unity
     guid: ec15bb44b15ca3b4590d93af818bb3ee
   - enabled: 1
+    path: Assets/BoatSegment.unity
+    guid: b386fbdc163b42448b40ccf78229de0a
+  - enabled: 1
     path: Assets/final_boss_zone.unity
     guid: 2b85627a0503d1e4f9be63019db4a32e
   - enabled: 1
