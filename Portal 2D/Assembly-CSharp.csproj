@@ -169,6 +169,7 @@
      <Compile Include="Assets\enemies\ShootingAI.cs" />
      <Compile Include="Assets\enemyScript.cs" />
      <Compile Include="Assets\explosion_behavior.cs" />
+     <Compile Include="Assets\LevelMenu.cs" />
      <Compile Include="Assets\missile.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
      <Compile Include="Assets\pool_manager.cs" />
@@ -186,6 +187,7 @@
      <Compile Include="Assets\scripts\playerScript.cs" />
      <Compile Include="Assets\scripts\portal_gun.cs" />
      <Compile Include="Assets\scripts\spinner.cs" />
+     <Compile Include="Assets\SettingsMenu.cs" />
      <Compile Include="Assets\SimplePortal.cs" />
      <Compile Include="Assets\switchObject.cs" />
      <Compile Include="Assets\ToNextLevel.cs" />
