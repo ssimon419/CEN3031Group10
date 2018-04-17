@@ -45,7 +45,7 @@ public class arenaHandler : MonoBehaviour {
 					gameObject.GetComponent<enemyScript> ().enemyDamage (1);
 				}
 			} else if (other.gameObject.CompareTag ("pain")) {
-				gameObject.GetComponent<enemyScript> ().enemyDamage (250);
+				gameObject.GetComponent<enemyScript> ().enemyDamage (150);
 			}
 		}
 	}

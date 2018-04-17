@@ -122,7 +122,7 @@ public class aimingSpawner : MonoBehaviour {
 		GameObject boolet = pool_manager.heldPools [0].GetPooledObject ();
 		Vector3 new_pos = source.position;
 		if (spread > 0f) {
-			new_pos = new Vector3 (source.position.x + Random.Range (spread * -1f, spread),source.position.y);
+			new_pos = new Vector3 (source.position.x + Random.Range (spread * -1f, spread),source.position.y+ Random.Range (spread * -1f, spread));
 		}
 		Ray2D r2d = new Ray2D (center.position, new_pos - center.position);
 		if (burst && first) {

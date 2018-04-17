@@ -182,6 +182,7 @@
      <Compile Include="Assets\scripts\new_portal.cs" />
      <Compile Include="Assets\scripts\objectPooler.cs" />
      <Compile Include="Assets\scripts\PauseMenu.cs" />
+     <Compile Include="Assets\scripts\platformmovement.cs" />
      <Compile Include="Assets\scripts\playerScript.cs" />
      <Compile Include="Assets\scripts\portal_gun.cs" />
      <Compile Include="Assets\scripts\spinner.cs" />

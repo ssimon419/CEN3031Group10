@@ -12,6 +12,7 @@ TagManager:
   - pain
   - trail
   - bullet
+  - small_moving_platform
   layers:
   - Default
   - TransparentFX
@@ -52,12 +53,12 @@ TagManager:
   - name: background
     uniqueID: 1075294979
     locked: 0
-  - name: Player
-    uniqueID: 2245000291
+  - name: Walls
+    uniqueID: 23929809
     locked: 0
   - name: ground
     uniqueID: 740657903
     locked: 0
-  - name: Walls
-    uniqueID: 23929809
+  - name: Player
+    uniqueID: 2245000291
     locked: 0

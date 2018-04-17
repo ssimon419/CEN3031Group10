@@ -13,4 +13,11 @@ public class area_boundary : MonoBehaviour {
 			coll.gameObject.transform.position = respawn.position;
 		}
 	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.CompareTag ("Player")) {
+			other.GetComponentInChildren<playerScript> ().playerDamage (5);
+			other.transform.position = respawn.position;
+		}
+	}
 }

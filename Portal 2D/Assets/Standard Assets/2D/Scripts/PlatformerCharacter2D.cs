@@ -29,6 +29,8 @@ namespace UnityStandardAssets._2D
 		private bool is_dashing = false;
 		private int timer = 0;
 		private bool wall_sliding = false;
+		private bool dash_cooldown = false;
+		private int cooldown_timer = 0;
 
         private void Awake()
         {
@@ -42,7 +44,7 @@ namespace UnityStandardAssets._2D
         }
 
 
-        private void FixedUpdate()
+        private void Update()
         {
 			m_Grounded = false;
 			wall_check = false;
@@ -65,10 +67,12 @@ namespace UnityStandardAssets._2D
 			m_Anim.SetFloat("hSpeed",Math.Abs(m_Rigidbody2D.velocity.x));
 
 
-			if (Input.GetKeyDown(KeyCode.LeftShift))
+			if (Input.GetKeyDown(KeyCode.LeftShift) && dash_cooldown == false)
 			{
 				is_dashing = true;
-				timer = 13;
+				timer = 7;
+				cooldown_timer = 85;
+				dash_cooldown = true;
 			}
         }
 
@@ -103,14 +107,17 @@ namespace UnityStandardAssets._2D
 					v.y = 0;
 					m_Rigidbody2D.velocity = v;
 					if (m_FacingRight)
-						m_Rigidbody2D.AddForce(new Vector2(m_DashSpeed, 0f));
+						m_Rigidbody2D.AddForce(new Vector2(m_DashSpeed, 0f),ForceMode2D.Impulse);
 					else
-						m_Rigidbody2D.AddForce(new Vector2(-1 * m_DashSpeed, 0f));
+						m_Rigidbody2D.AddForce(new Vector2(-1 * m_DashSpeed, 0f),ForceMode2D.Impulse);
 				}
 
 				if (timer > 0) --timer;   // will decriment timer for a 5 second dash
-
-				if (timer <= 0) is_dashing = false;
+				if (timer <= 0) {
+					is_dashing = false;
+				}
+				if (cooldown_timer > 0) --cooldown_timer;
+				if (cooldown_timer <= 0) dash_cooldown = false;
 
                 // Move the character
 

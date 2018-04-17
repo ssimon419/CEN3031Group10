@@ -9,6 +9,8 @@ public class enemyScript : MonoBehaviour {
 	public bool boss;
 	public RectTransform healthBar;
 
+	public GameObject exit_object;
+
 	private SpriteRenderer spr;
 
 	void Awake(){
@@ -25,6 +27,8 @@ public class enemyScript : MonoBehaviour {
 			health-=dmg;
 		} 
 		if (health <= 0) {
+			if (boss)
+				exit_object.SetActive(true);
 			spr.enabled = false;
 			gameObject.GetComponentInChildren<SpriteRenderer> ().enabled = false;
 			if (explosion != null)
