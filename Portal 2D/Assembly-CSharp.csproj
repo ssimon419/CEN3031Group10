@@ -171,6 +171,7 @@
      <Compile Include="Assets\enemies\ShootingAI.cs" />
      <Compile Include="Assets\enemyScript.cs" />
      <Compile Include="Assets\explosion_behavior.cs" />
+     <Compile Include="Assets\inRange.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
      <Compile Include="Assets\pool_manager.cs" />
      <Compile Include="Assets\Portal.cs" />
@@ -189,6 +190,7 @@
      <Compile Include="Assets\SimplePortal.cs" />
      <Compile Include="Assets\switchObject.cs" />
      <Compile Include="Assets\trail.cs" />
+     <Compile Include="Assets\WaterDeath.cs" />
      <None Include="Assets\enemies\AstarPathfindingProject\Plugins\DotNetZip\DotNetZipLicense.txt" />
      <None Include="Assets\enemies\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
      <None Include="Assets\enemies\AstarPathfindingProject\Plugins\dependencies.txt" />

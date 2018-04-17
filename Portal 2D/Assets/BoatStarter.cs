@@ -10,8 +10,9 @@ public class BoatStarter : MonoBehaviour {
  
     void OnTriggerExit2D(Collider2D other)
     {
-        boat.beginMoving();
-
+        if(other.gameObject.tag == "Player")
+         boat.beginMoving();
+        
     }
 
 
