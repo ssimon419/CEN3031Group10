@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/BoatSegment.unity
+- path: Assets/final_boss_zone.unity
   isLoaded: 1
   isActive: 1
