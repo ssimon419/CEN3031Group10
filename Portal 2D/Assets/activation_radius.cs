@@ -16,6 +16,7 @@ public class activation_radius : MonoBehaviour
             for (int i = 0; i < objs.Length; ++i)
             {
                 objs[i].SetActive(true);
+                objs[i].GetComponent<SpriteRenderer>().enabled = true;
             }
         }
     }
