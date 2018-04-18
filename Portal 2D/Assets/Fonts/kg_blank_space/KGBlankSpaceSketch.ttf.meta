@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: c6c09dd73aff38643b1aa45a3e87cd16
+timeCreated: 1524075116
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: KG Blank Space Sketch
+  fontNames:
+  - KG Blank Space Sketch
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
