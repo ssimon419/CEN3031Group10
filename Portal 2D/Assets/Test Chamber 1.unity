@@ -14706,6 +14706,11 @@ Prefab:
       propertyPath: portal2
       value: 
       objectReference: {fileID: 1899975221}
+    - target: {fileID: 114465287742683150, guid: 9778c503e7215c44c9ade60c4a3eab51,
+        type: 2}
+      propertyPath: pause
+      value: 
+      objectReference: {fileID: 1966447272}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9778c503e7215c44c9ade60c4a3eab51, type: 2}
   m_IsPrefabParent: 0

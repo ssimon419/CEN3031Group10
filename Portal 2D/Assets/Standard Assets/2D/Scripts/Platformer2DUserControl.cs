@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using System.Collections;
 
 namespace UnityStandardAssets._2D
 {
@@ -15,7 +16,6 @@ namespace UnityStandardAssets._2D
 		private float cur_time;
 		private float max_time=100f;
 
-
         private void Awake()
         {
 			cur_time = 100f;
@@ -25,25 +25,27 @@ namespace UnityStandardAssets._2D
 
         private void Update()
         {
-            if (!m_Jump)
-            {
-                // Read the jump input in Update so button presses aren't missed.
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-            }
-			if (Input.GetKeyDown(KeyCode.CapsLock)){
-				crouch=!crouch;
+			if(Time.timeScale != 0f){
+	            if (!m_Jump)
+	            {
+	                // Read the jump input in Update so button presses aren't missed.
+	                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+	            }
+				if (Input.GetKeyDown(KeyCode.CapsLock)){
+					crouch=!crouch;
+				}
+				else if (crouch&&cur_time>0f) {
+					Time.timeScale = 0.5f;
+					cur_time -= 0.25f;
+				} else {
+					crouch = false;
+					Time.timeScale = 1.0f;
+				}
+				if (!crouch && cur_time < max_time) {
+					cur_time += 0.1f;
+				}
+				time_bar.sizeDelta = new Vector2 (cur_time, time_bar.sizeDelta.y);
 			}
-			if (crouch&&cur_time>0f) {
-				Time.timeScale = 0.5f;
-				cur_time -= 0.25f;
-			} else {
-				crouch = false;
-				Time.timeScale = 1.0f;
-			}
-			if (!crouch && cur_time < max_time) {
-				cur_time += 0.1f;
-			}
-			time_bar.sizeDelta = new Vector2 (cur_time, time_bar.sizeDelta.y);
         }
 
 
