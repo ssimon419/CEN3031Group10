@@ -20,7 +20,10 @@ public class aimingSpawner : MonoBehaviour {
 	public float rotSpeed;
 	public bool gatling;
 	public float spread=0f;
+	public bool ramp_up;
+	public float final_rate;
 
+	private float nextFire=0f;
 	private bool activating=false;
 	private bool aiming=false;
 	private float curExtend=0f;
@@ -87,10 +90,13 @@ public class aimingSpawner : MonoBehaviour {
 			} else {
 				activating = false;	
 				aiming = true;
-				InvokeRepeating ("ShootBullet", initDelay, fireRate);
 			}
 		} 
 		if(aiming) {
+			if (Time.time > nextFire) {
+				ShootBullet ();
+				nextFire = Time.time + fireRate;
+			}
 			Quaternion targRot = Quaternion.LookRotation (new Vector3 (0.0f, 0.0f, 1f), target.position - gameObject.transform.position);
 			float str = Mathf.Min (rotSpeed * Time.deltaTime, 1);
 			gameObject.transform.rotation = Quaternion.Lerp (gameObject.transform.rotation, targRot, str);
@@ -134,6 +140,10 @@ public class aimingSpawner : MonoBehaviour {
 			boolet.SetActive (true);
 			boolet.GetComponent<Transform>().position = source.position;
 			boolet.GetComponent<bullet>().Initialize (r2d, bulletSpd, 0f, c, 1f, size,damage);
+		}
+		if (ramp_up && fireRate > final_rate) {
+			Debug.Log (fireRate);
+			fireRate -= 0.01f;
 		}
 	}
 

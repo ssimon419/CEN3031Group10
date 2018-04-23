@@ -8,6 +8,12 @@ public class activation_radius : MonoBehaviour {
 
 	public bool stay_on; 
 
+	public void activateObjects(){
+		for (int i = 0; i < objs.Length; ++i) {
+			if(objs[i] && !objs[i].activeInHierarchy) objs [i].SetActive (true);
+		}
+	}
+
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.CompareTag ("Player")) {
 			for (int i = 0; i < objs.Length; ++i) {

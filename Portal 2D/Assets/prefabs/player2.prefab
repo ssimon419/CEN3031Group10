@@ -648,6 +648,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   BulletTrailPrefab: {fileID: 0}
+  green: {r: 0.6838235, g: 1, b: 0.764503, a: 1}
+  purple: {r: 0.9306287, g: 0.7352941, b: 1, a: 1}
   effectSpawnRate: 10
   trail: {fileID: 1315139228175362, guid: affeb1cbd9d1ac2499a21d4bda95174a, type: 2}
 --- !u!114 &114445371223702934

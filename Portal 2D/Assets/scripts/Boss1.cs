@@ -39,14 +39,17 @@ public class Boss1 : MonoBehaviour {
 	private Transform fire_p;
     private int invokeCount;
     private int bigInvokeCount;
+	private Transform spin;
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	[SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 	private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
 	private bool is_grounded;
+	private int choosenAttack=0;
 
     // Use this for initialization
     void Awake () {
+		spin = transform.Find ("spinTime");
 		m_GroundCheck = transform.Find ("GroundCheck");
 		fire_p = transform.Find ("fire_pos");
 		m_anim = GetComponent<Animator> ();
@@ -96,7 +99,7 @@ public class Boss1 : MonoBehaviour {
 
     void chooseAttack()
     {
-		int choosenAttack = Random.Range(1, 4);
+		++choosenAttack;
 		if (!attacking) {
 			if (choosenAttack == 1) {
 				field.GetComponent<SpriteRenderer> ().color = nice_green;
@@ -118,6 +121,7 @@ public class Boss1 : MonoBehaviour {
 				attacking = true;
 				Debug.Log ("Attack 3 was chosen!");
 			} else {
+				choosenAttack = 0;
 				Debug.LogError ("No error was chosen!");
 			}
 		}    
@@ -142,6 +146,16 @@ public class Boss1 : MonoBehaviour {
      //   sr.color = Color.white;
         // ground slam
         //       Vector3 dir = (target);
+		Transform fp = spin.Find ("point");
+		for (int i = 0; i < 30; ++i) {
+			GameObject newBullet = pool_manager.heldPools [0].GetPooledObject ();
+			newBullet.transform.position = transform.position;
+			Ray2D r2d = new Ray2D (spin.position, spin.position - fp.position);
+			newBullet.SetActive (true);
+			newBullet.GetComponent<bullet> ().Initialize (r2d, Random.Range(5f,10f), 0f, Color.green, 1f, bulletSize, bulletDamage);
+			spin.Rotate (Vector3.forward, Random.Range(7f,15f));
+		}
+		spin.rotation = Quaternion.identity;
 		is_grounded=false;
 		m_anim.SetBool("jump",true);
 		Vector2 jump = new Vector2(target.transform.position.x - transform.position.x, 10f).normalized;
@@ -208,7 +222,25 @@ public class Boss1 : MonoBehaviour {
 
     void attack3()
     {
-		
+		field.tag = "pain";
+		Transform fp = spin.Find ("point");
+		for (int i = 0; i < 30; ++i) {
+			GameObject newBullet = pool_manager.heldPools [0].GetPooledObject ();
+			newBullet.transform.position = transform.position;
+			Ray2D r2d = new Ray2D (spin.position, spin.position - fp.position);
+			newBullet.SetActive (true);
+			newBullet.GetComponent<bullet> ().Initialize (r2d, bulletSpeed, 0f, Color.green, 1f, bulletSize, bulletDamage);
+			spin.Rotate (Vector3.forward, 360f/30f);
+		}
+		for (int i = 0; i < 60; ++i) {
+			GameObject newBullet = pool_manager.heldPools [0].GetPooledObject ();
+			newBullet.transform.position = fp.position;
+			Ray2D r2d = new Ray2D (spin.position, fp.position - spin.position);
+			newBullet.SetActive (true);
+			newBullet.GetComponent<bullet> ().Initialize (r2d, bulletSpeed*0.5f, 0f, Color.red, -1f, bulletSize, bulletDamage);
+			spin.Rotate (Vector3.forward, 360f/60f);
+		}
+
 		field.GetComponent<Animator> ().SetBool ("defense", true);
 		m_anim.SetBool ("defense", false);
 		attacking = false;

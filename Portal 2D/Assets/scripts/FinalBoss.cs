@@ -39,6 +39,8 @@ public class FinalBoss : MonoBehaviour {
 	private float count = 0f;
 	private float nextTime = 0.0f;
 
+	private int chosenAttack=3;
+
     void Awake()
     {
 		train.transform.localScale.Set (0f, 0f, 0f);
@@ -77,12 +79,12 @@ public class FinalBoss : MonoBehaviour {
 			count = 0.8f;
 			exploding = true;
 		} else if (!attacking&&!exploding) {
-			int chosenAttack = Random.Range (1, 5);
+			++chosenAttack;
 			if (chosenAttack == 1) {
 				Debug.Log ("chose missiles");
 				missiles = true;
 				transform.position = positions [0].position;
-				InvokeRepeating("fireMissiles", 0f, 0.8f);
+				InvokeRepeating ("fireMissiles", 0f, 0.8f);
 			} else if (chosenAttack == 2) {
 				turret_atk = true;
 				Debug.Log ("turret setup");
@@ -93,15 +95,20 @@ public class FinalBoss : MonoBehaviour {
 				transform.position = positions [3].position;
 				InvokeRepeating ("airstrike", 0f, 0.8f);
 				InvokeRepeating ("fireBullet", 0f, 0.1f);
-			} else {
+			} else if (chosenAttack == 4) {
 				Debug.Log ("launching train");
-				arena.GetComponent<arenaHandler> ().swap (3,6);
+				arena.GetComponent<arenaHandler> ().swap (3, 6);
 				train.GetComponent<destructible_object> ().obj_health = 9999;
-				if (Random.Range (1, 3) == 1) {
-					train_alt = true;
-				}
 				train.GetComponent<SpriteRenderer> ().enabled = true;
 				train_launch = 1;
+			} else if (chosenAttack == 5) {
+				Debug.Log ("launching train");
+				arena.GetComponent<arenaHandler> ().swap (3, 6);
+				train.GetComponent<destructible_object> ().obj_health = 9999;
+				train_alt = true;
+				train.GetComponent<SpriteRenderer> ().enabled = true;
+				train_launch = 1;
+				chosenAttack = 0;
 			}
 			attacking = true;
 		} else if (attacking) {

@@ -11,6 +11,9 @@ public class portal_gun : MonoBehaviour {
 	private Transform portal2;
 	public Transform BulletTrailPrefab;
 
+	public Color green;
+	public Color purple;
+
 	public float effectSpawnRate = 10;
 	private float speed=5;
 	float timeToSpawnEffect = 0;
@@ -129,14 +132,14 @@ public class portal_gun : MonoBehaviour {
 				Debug.DrawRay(r2d.origin,r2d.direction);
 				GameObject projectile = Instantiate(trail, firePointPosition, Quaternion.identity);
 				projectile.SetActive(true);
-				projectile.GetComponent<trail>().Initialize(r2d,firePoint, portal1,20);
+				projectile.GetComponent<trail>().Initialize(r2d,firePoint, portal1,20,green);
 			} else {
 				//Vector2 direction = mousePosition - firePointPosition;
 				//direction.Normalize();
 				Debug.DrawRay(r2d.origin,r2d.direction);
 				GameObject projectile = Instantiate(trail, firePointPosition, Quaternion.identity);
 				projectile.SetActive(true);
-				projectile.GetComponent<trail>().Initialize(r2d,firePoint, portal2,20);
+				projectile.GetComponent<trail>().Initialize(r2d,firePoint, portal2,20,purple);
 			}
 		}
 	}

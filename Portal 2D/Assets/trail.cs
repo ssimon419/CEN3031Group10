@@ -10,19 +10,20 @@ public class trail : MonoBehaviour
     private portal_gun pg;
 
 	public LayerMask whatToHit;
-
-    public SpriteRenderer spr;
     private Ray2D r2d;
     private float speed;
 	private Transform firepoint;
     private Rigidbody2D rb2d;
+	public Color c;
 
 
     public Transform portal;
 
 
-	public void Initialize(Ray2D r, Transform fp, Transform p, float s)
+	public void Initialize(Ray2D r, Transform fp, Transform p, float s, Color col)
     {
+		gameObject.GetComponentInChildren<SpriteRenderer> ().color = col;
+		c = col;
 		firepoint = fp;
 		rb2d = GetComponent<Rigidbody2D> ();
 		speed = s;
