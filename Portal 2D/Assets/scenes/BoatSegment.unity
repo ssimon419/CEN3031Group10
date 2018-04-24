@@ -230,7 +230,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 962841125}
+      objectReference: {fileID: 345129592}
     - target: {fileID: 1791752753829688, guid: 299d8f30f7c179e41a756a54014223f9, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -940,7 +940,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 962841125}
+      objectReference: {fileID: 345129592}
     - target: {fileID: 1791752753829688, guid: 299d8f30f7c179e41a756a54014223f9, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -1573,7 +1573,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 962841125}
+      objectReference: {fileID: 345129592}
     - target: {fileID: 1791752753829688, guid: 299d8f30f7c179e41a756a54014223f9, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -2927,7 +2927,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 962841125}
+      objectReference: {fileID: 345129592}
     - target: {fileID: 1791752753829688, guid: 299d8f30f7c179e41a756a54014223f9, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -5818,11 +5818,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1924865751}
-  - component: {fileID: 1924865756}
   - component: {fileID: 1924865755}
   - component: {fileID: 1924865754}
   - component: {fileID: 1924865753}
   - component: {fileID: 1924865752}
+  - component: {fileID: 1924865756}
   m_Layer: 0
   m_Name: Ship_Big
   m_TagString: Untagged
@@ -5866,7 +5866,7 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: 31.678162, y: -2.9909208}
-  - {x: 36.778427, y: -0.92297626}
+  - {x: 36.630066, y: -1.2938724}
 --- !u!68 &1924865753
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -5918,8 +5918,8 @@ EdgeCollider2D:
   m_Points:
   - {x: -3.9166718, y: -2.54052}
   - {x: 0.65470123, y: -7.360047}
---- !u!68 &1924865756
-EdgeCollider2D:
+--- !u!61 &1924865756
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -5930,11 +5930,19 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 13.959862, y: -1.1580667}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 45.961227, y: 0.28971672}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -9.238144, y: -0.8161948}
-  - {x: 36.764954, y: -0.9622412}
 --- !u!1 &1977599877
 GameObject:
   m_ObjectHideFlags: 0
