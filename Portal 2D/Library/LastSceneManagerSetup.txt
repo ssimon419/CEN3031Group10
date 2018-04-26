@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/scenes/final_boss_zone.unity
+- path: Assets/scenes/Below Deck.unity
   isLoaded: 1
   isActive: 1
